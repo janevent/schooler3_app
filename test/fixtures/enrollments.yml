@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  student_id: 1
+  course_id: 1
+  start_date: 2019-09-12
+  end_date: 2019-09-12
+  progress_report: MyString
+  user_id: 1
+
+two:
+  student_id: 1
+  course_id: 1
+  start_date: 2019-09-12
+  end_date: 2019-09-12
+  progress_report: MyString
+  user_id: 1
