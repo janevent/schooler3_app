@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  get '/home', to: 'applications#home'
+  get '/', to: 'applications#home', as: 'home'
   resources :users, only: [:new, :create, :show]
 
   get '/login', to: 'sessions#new'

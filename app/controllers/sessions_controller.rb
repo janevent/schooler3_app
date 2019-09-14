@@ -9,7 +9,12 @@ class SessionsController < ApplicationController
             session[:user_id] = params[:id]
             redirect_to user_path(@user)
         else
-            redirect_to login_path
+            redirect_to home_path
         end
     end
+
+    def destroy
+        session.delete :id
+    end
+
 end

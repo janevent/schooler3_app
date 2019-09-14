@@ -12,10 +12,7 @@ class UsersController < ApplicationController
         @user = User.find_by(id: params[:id])
     end
 
-    def destroy
-        session.delete :id
-    end
-
+    
     private 
 
     def user_params
