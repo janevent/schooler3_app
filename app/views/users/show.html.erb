@@ -1,0 +1,5 @@
+<h2>Hello <%= @user.name %> </h2>
+<h3>List of Students</h3>
+<% @students.each do |student|%>
+    <p><%= student.name %> <%= link_to "#{student.name}'s page" %></p> 
+    <%end%>
