@@ -5,7 +5,12 @@ class UsersController < ApplicationController
 
     def create 
         @user = User.new(user_params)
-        session[:user_id] = @user.id # params[:id]
+        if @user.save
+            session[:user_id] = @user.id # params[:id]
+            redirect_to user_path(@user)
+        else
+            redirect_to new_user_path 
+        end
     end
 
     def show 
@@ -13,6 +18,20 @@ class UsersController < ApplicationController
             @user = User.find_by(id: params[:id])
         else 
             redirect_to home_path
+        end
+    end
+
+    def edit 
+        if logged_in?
+            @user = User.find_by(id: params[:id])
+        else 
+            redirect_to home_path
+        end
+    end
+
+    def update 
+        if logged_in?
+            @user = User.update(user_params)
         end
     end
 
