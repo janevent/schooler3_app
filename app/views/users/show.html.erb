@@ -1,5 +1,9 @@
 <h2>Hello <%= @user.name %> </h2>
+<p><%= @user.email %></p>
+<br>
 <h3>List of Students</h3>
 <% @students.each do |student|%>
-    <p><%= student.name %> <%= link_to "#{student.name}'s page" link_to user_student_path(student)%></p> 
-    <%end%>
+    <p><%= student.name %> <%= link_to "#{student.name}'s page", user_student_path(student)%></p> 
+<%end%>
+<%= link_to "Edit Your Profile", edit_user_path %>
+<%= link_to "Add a New Student", new_student_path %>
