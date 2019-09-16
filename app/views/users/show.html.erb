@@ -6,5 +6,5 @@
     <p><%= student.name %> <%= link_to "#{student.name}'s page", user_student_path(student)%></p> 
 <%end%>
 <%= link_to "Edit Your Profile", edit_user_path %>
-<%= link_to "Add a New Student", new_user_student_path %>
+<%= link_to "Add a New Student", new_user_student_path(@user) %>
 <p> profile students schedual courses materials logout </p>

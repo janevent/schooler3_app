@@ -33,6 +33,9 @@ class UsersController < ApplicationController
     def update 
         if logged_in?
             @user = User.update(user_params)
+            redirect_to user_path
+        else
+            redirect_to home_path
         end
     end
 
