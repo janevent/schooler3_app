@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   get '/', to: 'application#home', as: 'home'
-  resources :users, only: [:new, :create, :show, :edit,:update. :delete] do 
+  resources :users, only: [:new, :create, :show, :edit, :update, :destroy] do 
     resources :students
   end
 
