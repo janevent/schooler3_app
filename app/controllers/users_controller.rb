@@ -36,6 +36,54 @@ class UsersController < ApplicationController
         end
     end
 
+    def new_student
+        @user = User.find_by(user_id: current_user[:user_id])
+        @student = @user.students.build
+        #new
+        render template: 'students/new'
+    end
+        
+    def create_student
+        @user = User.find_by(id: current_user[:user_id])
+        @student = @user.students.build(student_params)
+        if current_user && @student.save
+            redirect_to user_student_path(@student)
+        elsif current_user
+            redirect_to user_new_student_path
+        else
+            redirect_to home_path 
+        end
+
+    end
+
+    def student 
+        if logged_in?
+            @student = Student.find_by(id: params[:student_id])
+            render template: 'students/show'
+        else
+            redirect_to home_path
+        end
+    end
+
+    def student_index
+        if logged_in?
+            @user = User.find_by(id: current_user[:user_id])
+            @students = @user.students
+            render template: 'students/index'
+        else
+            redirect_to home_path 
+        end
+    end
+
+    def edit_student
+        render template: 'students/edit'
+    end
+
+    def update_student 
+    end
+
+
+
     
     private 
 

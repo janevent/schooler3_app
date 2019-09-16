@@ -1,6 +1,6 @@
 class StudentsController < ApplicationController
     def new
-        @user = User.find_by(id: current_user[:user_id])
+        @user = User.find_by(user_id: current_user[:user_id])
         @student = @user.students.build #create
     end
 
