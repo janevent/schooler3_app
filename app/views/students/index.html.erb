@@ -1,0 +1,7 @@
+<% @students.each do |student|%>
+    <%= student.name %> <%= link_to student.name, user_student_path(student) %>
+    <% student.courses.each do |course| %>
+        <%= course.title %> <%= link_to course.name, course_path(student) %>
+        <%= course.enrollments.where(student_id: course.student_id.student_progress %>
+    <%end%>
+<%end%>
