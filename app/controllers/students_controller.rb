@@ -26,6 +26,12 @@ class StudentsController < ApplicationController
     end
 
     def index
+        if logged_in?
+            @user = User.find_by(id: current_user[:user_id])
+            @students = @user.students
+        else
+            redirect_to home_path 
+        end
     end
 
     def edit
