@@ -1,9 +1,11 @@
 class StudentsController < ApplicationController
     def new
         @user = User.find_by(user_id: current_user[:user_id])
-        @student = @user.students.build #create
+        @student = @user.students.build
+        #new
+        
     end
-
+        
     def create
         @user = User.find_by(id: current_user[:user_id])
         @student = @user.students.build(student_params)
@@ -17,9 +19,10 @@ class StudentsController < ApplicationController
 
     end
 
-    def show 
+    def show
         if logged_in?
             @student = Student.find_by(id: params[:student_id])
+            
         else
             redirect_to home_path
         end
@@ -29,14 +32,16 @@ class StudentsController < ApplicationController
         if logged_in?
             @user = User.find_by(id: current_user[:user_id])
             @students = @user.students
+            
         else
             redirect_to home_path 
         end
     end
 
-    def edit
+    def edit_student
+        
     end
 
-    def update 
+    def update_student 
     end
 end
