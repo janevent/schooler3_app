@@ -18,6 +18,11 @@ class StudentsController < ApplicationController
     end
 
     def show 
+        if logged_in?
+            @student = Student.find_by(id: params[:student_id])
+        else
+            redirect_to home_path
+        end
     end
 
     def index
