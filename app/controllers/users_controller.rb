@@ -9,13 +9,14 @@ class UsersController < ApplicationController
             session[:user_id] = @user.id # params[:id]
             redirect_to user_path(@user)
         else
-            redirect_to new_user_path 
+            redirect_to home_path 
         end
     end
 
     def show 
         if logged_in?
             @user = User.find_by(id: params[:id])
+            @students = @user.students
         else 
             redirect_to home_path
         end
