@@ -44,4 +44,10 @@ class StudentsController < ApplicationController
 
     def update_student 
     end
+
+    private 
+
+    def student_params 
+        params.require(:student).permit(:name, :goal)
+    end
 end
