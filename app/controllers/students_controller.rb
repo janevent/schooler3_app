@@ -1,3 +1,4 @@
+require 'pry'
 class StudentsController < ApplicationController
     def new
         @user = User.find_by(user_id: current_user[:user_id])
@@ -20,6 +21,7 @@ class StudentsController < ApplicationController
     end
 
     def show
+        #binding.pry
         if logged_in?
             @student = Student.find_by(id: params[:student_id])
             
@@ -39,10 +41,22 @@ class StudentsController < ApplicationController
     end
 
     def edit_student
-        
+        if current_user
+            @user = User.find_by(id: current_user[:user_id])
+            @student = Student.find_by(id: params[:student_id])
+        else 
+            redirect_to home_path 
+        end   
     end
 
-    def update_student 
+    def update_student
+        if current_user && @student.update(student_params)
+            redirect_to user_student_path(current_user, @student)
+        elsif current_user
+            render '/edit'
+        else 
+            redirect_to home_path 
+        end 
     end
 
     private 
