@@ -13,8 +13,10 @@ class StudentsController < ApplicationController
     end
         
     def create
-        @user = User.find_by(id: current_user[:user_id])
-        @student = @user.students.build(student_params)
+        @student = Student.new(student_params)
+        @student.user = User.find_by(id: current_user[:user_id])
+        #@user = User.find_by(id: current_user[:user_id])
+        #@student = @user.students.build(student_params)
         if current_user && @student.save
             redirect_to user_student_path(@student)
         elsif current_user
@@ -35,8 +37,8 @@ class StudentsController < ApplicationController
 
     def index
         if logged_in?
-            @user = User.find_by(id: current_user[:user_id])
-            @students = @user.students
+            #@user = User.find_by(id: current_user[:user_id])
+            @students = Student.all
             
         else
             redirect_to home_path 
@@ -67,7 +69,7 @@ class StudentsController < ApplicationController
     private 
 
     def student_params 
-        params.require(:student).permit(:name, :goal)
+        params.require(:user[:student]).permit(:name, :goal)
     end
 
 end

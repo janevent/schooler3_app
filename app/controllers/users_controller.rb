@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 
     def show 
         if logged_in?
-            @user = User.find_by(id: params[:id])
+            @user = User.find_by(id: current_user[:user_id])
             @students = @user.students
         else 
             redirect_to home_path
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
 
     def edit 
         if logged_in?
-            @user = User.find_by(id: params[:id])
+            @user = User.find_by(id: current_user[:user_id])
         else 
             redirect_to home_path
         end
