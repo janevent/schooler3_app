@@ -1,9 +1,14 @@
-require 'pry'
+
+#require 'pry'
 class StudentsController < ApplicationController
     def new
-        @user = User.find_by(user_id: current_user[:user_id])
-        @student = @user.students.build
-        #new
+        #binding.pry
+        if logged_in?
+            @student = Student.new
+            #@student = @user.students.build
+        else 
+            redirect_to home_path
+        end
         
     end
         
@@ -17,11 +22,9 @@ class StudentsController < ApplicationController
         else
             redirect_to home_path 
         end
-
     end
 
     def show
-        #binding.pry
         if logged_in?
             @student = Student.find_by(id: params[:student_id])
             
@@ -49,6 +52,7 @@ class StudentsController < ApplicationController
         end   
     end
 
+
     def update_student
         if current_user && @student.update(student_params)
             redirect_to user_student_path(current_user, @student)
@@ -59,9 +63,11 @@ class StudentsController < ApplicationController
         end 
     end
 
+
     private 
 
     def student_params 
         params.require(:student).permit(:name, :goal)
     end
+
 end
