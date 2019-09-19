@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     def show 
         if logged_in?
             #binding.pry
-            @user = User.find_by(id: current_user[:user_id])
+            @user = User.find_by(id: params[:id])
             @students = @user.students
         else 
             redirect_to home_path
