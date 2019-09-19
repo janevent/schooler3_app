@@ -1,3 +1,5 @@
+
+#require 'pry'
 class UsersController < ApplicationController
     def new 
         @user = User.new
@@ -15,6 +17,7 @@ class UsersController < ApplicationController
 
     def show 
         if logged_in?
+            #binding.pry
             @user = User.find_by(id: current_user[:user_id])
             @students = @user.students
         else 
