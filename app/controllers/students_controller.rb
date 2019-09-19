@@ -13,7 +13,7 @@ class StudentsController < ApplicationController
     end
         
     def create
-        @student = Student.new(name: params[:user][:student][:name], goal: params[:user][:student][:goal], user_id: current_user.user_id )
+        @student = current_user.students.build(name: params[:user][:student][:name], goal: params[:user][:student][:goal])
        # binding.pry
         #@student.user = User.find_by(id: current_user[:user_id])
         #@user = User.find_by(id: current_user[:user_id])
