@@ -30,7 +30,7 @@ class StudentsController < ApplicationController
 
     def show
         if logged_in?
-            @student = Student.find_by(id: params[:id])
+            @student = Student.find_by(id: params[:id]) #user_id?
             
         else
             redirect_to home_path
@@ -39,8 +39,8 @@ class StudentsController < ApplicationController
 
     def index
         if logged_in?
-            #@user = User.find_by(id: current_user[:user_id])
-            @students = Student.all
+            @user = User.find_by(id: params[:user_id])
+            @students = @user.students
             
         else
             redirect_to home_path 

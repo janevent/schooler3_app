@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
         #binding.pry
         @user = User.find_by(name: params[:user][:name])
         if @user && @user.authenticate(params[:user][:password])
-            session[:user_id] = params[:id]
+            session[:user_id] = @user.id #params[:id]
             redirect_to user_path(@user)
         else
             redirect_to home_path
@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
     end
 
     def destroy
-        session.delete :id
+        session.delete  :user_id #:id
         #session.clear
     end
 
