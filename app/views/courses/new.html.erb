@@ -3,12 +3,17 @@
     <%= f.text_field :title %>
     <%= f.label :description %>
     <%= f.text_field :description %>
+    <%= f.collection_select :material_id, Material.all, :id, :item %>
+    <%= f.fields_for :materials do |mat| %>
+        <%= mat.label :item %>
+        <%= mat.text_field :item %>
+    <%end%>
     <%= f.submit "Create Course" %>
  <%end%>
- 
+
  <p>Add materials </p>
- <%= form_for @material do |f| %>
-    <%= f.label :item %>
+ <%= form_for @course_material do |f| %>
+    <%= f.label material[:item] %>
     <%= f.text_field :item %>
     <%= f.submit "Add material" %>
 <%end%>
@@ -22,3 +27,5 @@
     <%= f.text_field :item %>
     <%= f.submit "Add material" %>
 <%end%>
+
+
