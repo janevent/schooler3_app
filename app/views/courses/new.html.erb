@@ -4,9 +4,23 @@
     <%= f.label :description %>
     <%= f.text_field :description %>
     <%= f.collection_select :material_id, Material.all, :id, :item %>
+    <br>
+
+    <p> Add materials </p>
     <%= f.fields_for :materials do |mat| %>
         <%= mat.label :item %>
         <%= mat.text_field :item %>
+    <%end%>
+    <br>
+
+    <p> Make a schedual </p>
+    <%= f.fields_for :meetings do |meet|
+        <%= meet.label :day %>
+        <%= meet.text_field :day %>
+        <%= meet.label :start_time %>
+        <%= meet.text_field :start_time %>
+        <%= meet.label :end_time %>
+        <%= meet.text_field :end_time %>
     <%end%>
     <%= f.submit "Create Course" %>
  <%end%>
