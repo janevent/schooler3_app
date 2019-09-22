@@ -1,4 +1,7 @@
 class CoursesController < ApplicationController 
+
+    before_action :check_logged_in
+    
     def new 
         @course = Course.new
     end
@@ -33,5 +36,12 @@ class CoursesController < ApplicationController
 
     def course_params
         params.require(:course).permit(:title, :description )
+    end
+
+    def check_logged_in
+        
+        if !logged_in? || !current_user
+            redirect_to home_path
+        end
     end
 end
