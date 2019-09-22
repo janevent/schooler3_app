@@ -4,15 +4,23 @@ class CoursesController < ApplicationController
 
     def new 
         @course = Course.new
+        @student = Student.find_by(id: params[:student_id] 
     end
 
     def create 
-        @course = Course.new(course_params)
-        redirect_to course_path(@course)
+        @student = Student.find_by(id: params[:student_id])
+        @course = @student.courses.build(course_params)
+        if @course.save
+            redirect_to user_student_course_path(@student, @course)
+        else 
+            render: '/new'
+        end
     end 
 
     def index 
-        @courses = Course.all
+        @user = User.find_by(id: params[:user_id])
+        @student = Student.find_by(id: params[:student_id])
+        @courses = @student.courses
     end 
 
     def edit 

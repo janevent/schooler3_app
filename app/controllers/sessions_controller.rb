@@ -9,9 +9,9 @@ class SessionsController < ApplicationController
         
         @user = User.find_by(name: params[:user][:name])
         
-        if @user.save && @user.authenticate(params[:user][:password])
-            binding.pry
-            session[:user_id] = @user.id #params[:id]
+        if @user && @user.authenticate(params[:user][:password])
+            #binding.pry
+            session[:user_id] = params[:id]
             redirect_to user_path(@user)
         else
             redirect_to home_path

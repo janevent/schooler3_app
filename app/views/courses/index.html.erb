@@ -1,4 +1,4 @@
 <h2>Courses</h2>
 <% @courses.each do |course| %>
-   <p> <%= course.title %> <%= link_to "go to #{course.title}", course_path(@course) %></p>
+   <p> <%= course.title %> <%= link_to "go to #{course.title}", user_student_course_path(@course) %></p>
 <%end%>
