@@ -21,6 +21,7 @@ class CoursesController < ApplicationController
         @user = User.find_by(id: params[:user_id])
         @student = Student.find_by(id: params[:student_id])
         @courses = @student.courses
+        #write another index for Course.all?
     end 
 
     def edit 

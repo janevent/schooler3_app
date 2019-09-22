@@ -1,0 +1,24 @@
+<%= form_for @course do |f| %>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+    <%= f.submit "Create Course" %>
+ <%end%>
+ 
+ <p>Add materials </p>
+ <%= form_for @material do |f| %>
+    <%= f.label :item %>
+    <%= f.text_field :item %>
+    <%= f.submit "Add material" %>
+<%end%>
+<%= form_for @material do |f| %>
+    <%= f.label :item %>
+    <%= f.text_field :item %>
+    <%= f.submit "Add material" %>
+<%end%>
+<%= form_for @material do |f| %>
+    <%= f.label :item %>
+    <%= f.text_field :item %>
+    <%= f.submit "Add material" %>
+<%end%>
