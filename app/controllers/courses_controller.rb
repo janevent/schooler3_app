@@ -9,12 +9,21 @@ class CoursesController < ApplicationController
     end 
 
     def index 
+        @courses = Course.all
     end 
 
     def edit 
+        @course = Course.find_by(id: params[:id])
     end
 
-    def update 
+    def update
+        @course = Course.find_by(id: params[:id])
+        @course.update(course_params) 
+        if @course.valid?
+            redirect_to course_path(@course)
+        else
+            redirect_to home_path 
+        end
     end 
 
     def destroy 
@@ -23,7 +32,6 @@ class CoursesController < ApplicationController
     private 
 
     def course_params
-    
         params.require(:course).permit(:title, :description )
     end
 end
