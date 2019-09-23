@@ -1,0 +1,7 @@
+<h1><%= @course.title %></h1>
+
+<%= @course.description %>
+<p>Course Materials</p>
+<% @course.materials.each do |i| %>
+    <%= i.item %>
+<%end%>

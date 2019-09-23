@@ -25,10 +25,10 @@ class CoursesController < ApplicationController
     end
 
     def index 
-        @user = User.find_by(id: params[:user_id])
+        #@user = User.find_by(id: params[:user_id])
         @student = Student.find_by(id: params[:student_id])
         @courses = @student.courses
-        #write another index for Course.all?
+        #write another index for Course.all? or use conditional?
     end 
 
     def index_all
