@@ -13,6 +13,13 @@
     <%end%>
     <br>
 
+    <%= f.fields_for :enrollments do |enroll|
+        <%= enroll.label :start_date %>
+        <%= enroll.text_field :start_date %>
+        <%= enroll.label :end_date %>
+        <%= enroll.text_field :end_date %>
+    <%end%>
+    
     <p> Make a schedual </p>
     <%= f.fields_for :meetings do |meet|
         <%= meet.label :day %>
@@ -22,7 +29,7 @@
         <%= meet.label :end_time %>
         <%= meet.text_field :end_time %>
     <%end%>
-    
+
     <%= f.submit "Create Course" %>
  <%end%>
 

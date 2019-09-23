@@ -6,6 +6,7 @@ class CoursesController < ApplicationController
         @course = Course.new
         @material = @course.materials.build 
         @meeting = @course.meetings.build
+        @enrollment = @course.enrollments.build
         @student = Student.find_by(id: params[:student_id] 
     end
 
@@ -18,6 +19,9 @@ class CoursesController < ApplicationController
             render: '/new'
         end
     end 
+
+    def show 
+    end
 
     def index 
         @user = User.find_by(id: params[:user_id])
@@ -46,7 +50,7 @@ class CoursesController < ApplicationController
     private 
 
     def course_params
-        params.require(:course).permit(:title, :description, meeting_attributes {:day, :start_time, :end_time, :note}, material_attributes {:item} )
+        params.require(:course).permit(:title, :description, meeting_attributes {:day, :start_time, :end_time, :note}, material_attributes {:item}, enrollment_atributes: {start_date, :end_date} )
     end
 
     def check_logged_in
