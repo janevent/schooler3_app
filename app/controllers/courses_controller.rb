@@ -4,6 +4,8 @@ class CoursesController < ApplicationController
 
     def new 
         @course = Course.new
+        @material = @course.materials.build 
+        @meeting = @course.meetings.build
         @student = Student.find_by(id: params[:student_id] 
     end
 
@@ -44,7 +46,7 @@ class CoursesController < ApplicationController
     private 
 
     def course_params
-        params.require(:course).permit(:title, :description )
+        params.require(:course).permit(:title, :description, meeting_attributes {:day, :start_time, :end_time, :note}, material_attributes {:item} )
     end
 
     def check_logged_in
