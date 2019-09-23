@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/courses', to: 'courses#index_all'
+
   get '/login', to: 'sessions#new'
   post '/users', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'

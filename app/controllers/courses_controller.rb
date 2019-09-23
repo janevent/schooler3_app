@@ -21,6 +21,7 @@ class CoursesController < ApplicationController
     end 
 
     def show 
+        @course = Course.find_by(id: params[:id])
     end
 
     def index 
@@ -50,6 +51,7 @@ class CoursesController < ApplicationController
     end 
 
     def destroy 
+        @course = Course.find_by(id: params[:id])
     end
 
     private 
