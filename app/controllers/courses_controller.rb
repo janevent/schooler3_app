@@ -30,6 +30,11 @@ class CoursesController < ApplicationController
         #write another index for Course.all?
     end 
 
+    def index_all
+        @user = User.find_by(id: current_user[:user_id])
+        @courses = @user.courses
+    end
+
     def edit 
         @course = Course.find_by(id: params[:id])
     end
@@ -38,7 +43,7 @@ class CoursesController < ApplicationController
         @course = Course.find_by(id: params[:id])
         @course.update(course_params) 
         if @course.valid?
-            redirect_to course_path(@course)
+            redirect_to user_student_course_path(@course)
         else
             redirect_to home_path 
         end
