@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
         
         if @user && @user.authenticate(params[:user][:password])
             #binding.pry
-            session[:user_id] = params[:id]
+            session[:user_id] = @user.id
             redirect_to user_path(@user)
         else
             redirect_to home_path
