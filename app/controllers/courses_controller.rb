@@ -29,15 +29,16 @@ class CoursesController < ApplicationController
             if @course.save
                 redirect_to user_student_course_path(@student, @course)
             else 
-                render: '/new'
+                redirect_to new_user_student_course(@student)
             end
         else
             @course = Course.new(course_params)
             if @course.save 
                 redirect_to course_path(@course) 
             else
-                render: '/new'
+                redirect_to new_user_student_course_path(@student)
             end  
+        end
     end 
 
     def show 
@@ -77,7 +78,7 @@ class CoursesController < ApplicationController
     private 
 
     def course_params
-        params.require(:course).permit(:title, :description, meeting_attributes {:day, :start_time, :end_time, :note}, material_attributes {:item}, enrollment_atributes: {start_date, :end_date} )
+        params.require(:course).permit(:title, :description, meetings_attributes: [:day, :start_time, :end_time, :note ], materials_attributes: [:item ], enrollments_attributes: [:start_date, :end_date ] )
     end
 
     def check_logged_in
@@ -85,4 +86,5 @@ class CoursesController < ApplicationController
             redirect_to home_path
         end
     end
+
 end

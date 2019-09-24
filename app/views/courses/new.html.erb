@@ -7,7 +7,7 @@
     <br>
    <p> Choose materials:</p>
     <%= f.collection_check_boxes(:material_id, Material.all, :id, :item) %>
-    <p>user - students-meetings-courses-course_materials- materials</p>
+   <p> user - students-meetings-courses-course_materials- materials</p>
 
     <p> Add materials </p>
     <%= f.fields_for :materials do |mat| %>
@@ -16,21 +16,18 @@
     <%end%>
     <br>
 
-    <%= f.fields_for :enrollments do |enroll|
+    <%= f.fields_for :enrollments do |enroll| %>
         <%= enroll.label :start_date %>
         <%= enroll.text_field :start_date %>
         <%= enroll.label :end_date %>
         <%= enroll.text_field :start_date %>
-        <%= enroll.collection_select (:student_id, Student.all, :id, :name )%>
-        <%= enroll.label :stident_progress %>
-        <%= enroll.text_field :student_progress %>
+        <%= enroll.collection_select :student_id, Student.all, :id, :name %>
+
     <%end%>
 
-    <p> Make a schedual </p>
-    <%= f.fields_for :meetings do |meet|
-        <%= meet.collection_select (:id,[['Monday']['Tuesday'][
-            'Wednesday']['Thursday']['Friday']['Saturday']['Sunday']
-        ]] , :id, :day ) %>
+    <p> Set up course meetings </p>
+    <%= f.fields_for :meetings do |meet| %>
+        <%= meet.collection_select( :day [['Monday',1]['Tuesday', 2]['Wednesday', 3]['Thursday', 4]['Friday', 5]['Saturday', 6]['Sunday', 7]], :day, :day) %>
         
         <%= meet.label :start_time %>
         <%= meet.text_field :start_time %>
@@ -41,13 +38,7 @@
     <%= f.submit "Create Course" %>
  <%end%>
 
- <p>Add material</p>
- <%= form_for @material do |f|%>
-    <%= f.label :item %>
-    <%= f.text_field :item %>
-    <%= f.submit "Add item to course" %>
-<%end%>
-
+ 
  
 
 

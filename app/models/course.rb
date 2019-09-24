@@ -8,8 +8,8 @@ class Course < ApplicationRecord
     #has_many :projects
     #has_many :students, through: :projects
     validates :title, presence: true
-    accepts_nested_attributes :materials 
-    accepts_nested_attributes :meetings 
-    accepts_nested_attributes :enrollments
+    accepts_nested_attributes_for :materials 
+    accepts_nested_attributes_for :meetings 
+    accepts_nested_attributes_for :enrollments
 
 end
