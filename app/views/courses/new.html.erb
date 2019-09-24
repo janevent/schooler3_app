@@ -3,11 +3,11 @@
     <%= f.text_field :title %>
     <%= f.label :description %>
     <%= f.text_field :description %>
-    <%= f.collection_select :material_id, Material.all, :id, :item %>
+    
     <br>
    <p> Choose materials:</p>
     <%= f.collection_check_boxes(:material_id, Material.all, :id, :item) %>
-    
+    user - students-meetings-courses-course_materials- materials
 
     <p> Add materials </p>
     <%= f.fields_for :materials do |mat| %>
@@ -20,7 +20,9 @@
         <%= enroll.label :start_date %>
         <%= enroll.text_field :start_date %>
         <%= enroll.label :end_date %>
-        <%= enroll.text_field :end_date %>
+        <%= enroll.text_field :start_date %>
+        <%= enroll.collection_select :student_id, Student.all, :id, :name %>
+
     <%end%>
 
     <p> Make a schedual </p>

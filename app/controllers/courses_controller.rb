@@ -4,10 +4,22 @@ class CoursesController < ApplicationController
 
     def new 
         @course = Course.new
-        @material = @course.materials.build 
-        @meeting = @course.meetings.build
-        @enrollment = @course.enrollments.build
-        @student = Student.find_by(id: params[:student_id] 
+
+        4.times do
+            @course.materials.build
+        end 
+
+        7.times do
+            @meeting = @course.meetings.build
+        end
+        
+        3.times do
+            @enrollment = @course.enrollments.build
+        end 
+        # if params[:student_id] don't need to select, build an enrollment with student_id attribute equal to params[:student_id]
+        if params[:student_id]
+            @student = Student.find_by(id: params[:student_id])
+        end
     end
 
     def create 
