@@ -7,7 +7,7 @@
     <br>
    <p> Choose materials:</p>
     <%= f.collection_check_boxes(:material_id, Material.all, :id, :item) %>
-    user - students-meetings-courses-course_materials- materials
+    <p>user - students-meetings-courses-course_materials- materials</p>
 
     <p> Add materials </p>
     <%= f.fields_for :materials do |mat| %>
@@ -21,14 +21,17 @@
         <%= enroll.text_field :start_date %>
         <%= enroll.label :end_date %>
         <%= enroll.text_field :start_date %>
-        <%= enroll.collection_select :student_id, Student.all, :id, :name %>
-
+        <%= enroll.collection_select (:student_id, Student.all, :id, :name )%>
+        <%= enroll.label :stident_progress %>
+        <%= enroll.text_field :student_progress %>
     <%end%>
 
     <p> Make a schedual </p>
     <%= f.fields_for :meetings do |meet|
-        <%= meet.label :day %>
-        <%= meet.text_field :day %>
+        <%= meet.collection_select (:id,[['Monday']['Tuesday'][
+            'Wednesday']['Thursday']['Friday']['Saturday']['Sunday']
+        ]] , :id, :day ) %>
+        
         <%= meet.label :start_time %>
         <%= meet.text_field :start_time %>
         <%= meet.label :end_time %>
