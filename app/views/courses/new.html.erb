@@ -9,35 +9,48 @@
     <%= f.text_field :description %>
     
     <br>
-   <p> Choose materials:</p>
+   <p> What materials will you need?:</p>
     <%= f.collection_check_boxes(:material_id, Material.all, :id, :item) %>
    <p> user - students-meetings-courses-course_materials- materials</p>
     <br>
-    <p> Add materials </p>
+    <p> Add materials: </p>
     <br>
     <%= f.fields_for :materials do |mat| %>
-        <%= mat.label :item %>
+        <%= mat.label :item  %>
+        <br>
         <%= mat.text_field :item %>
+        <br>
     <%end%>
     <br>
-
+        <p>Enroll Your Studious Children:</p>
     <%= f.fields_for :enrollments do |enroll| %>
-        <%= enroll.label :start_date %>
-        <%= enroll.text_field :start_date %>
-        <%= enroll.label :end_date %>
-        <%= enroll.text_field :start_date %>
         <%= enroll.collection_select :student_id, Student.all, :id, :name %>
+        <br>
+        <%= enroll.label :start_date %>
+        <br>
+        <%= enroll.text_field :start_date %>
+        <br>
+        <%= enroll.label :end_date %>
+        <br>
+        <%= enroll.text_field :start_date %>
+        <br>
+        
+        <br>
 
     <%end%>
 
-    <p> Set up course meetings </p>
+    <p> Set The Schedual </p>
     <%= f.fields_for :meetings do |meet| %>
         <%= meet.collection_select( :day_id, Day.all, :id, :name) %>
         
         <%= meet.label :start_time %>
+    
         <%= meet.text_field :start_time %>
+        
         <%= meet.label :end_time %>
         <%= meet.text_field :end_time %>
+        <br>
+        <br>
     <%end%>
 
     <%= f.submit "Create Course" %>
