@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     end
   end
 
-  get '/courses', to: 'courses#index_all'
+  
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'

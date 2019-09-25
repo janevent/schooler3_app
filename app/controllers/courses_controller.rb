@@ -26,7 +26,7 @@ class CoursesController < ApplicationController
         if params[:student_id]
             @student = Student.find_by(id: params[:student_id])
             @course = @student.courses.build(course_params)
-            if @course.save
+            if @course.save!
                 redirect_to user_student_course_path(@student, @course)
             else 
                 redirect_to new_user_student_course_path(@student)
@@ -47,15 +47,15 @@ class CoursesController < ApplicationController
 
     def index 
         #@user = User.find_by(id: params[:user_id])
-        @student = Student.find_by(id: params[:student_id])
-        @courses = @student.courses
+       # @student = Student.find_by(id: params[:student_id])
+        #@courses = @student.courses
         #write another index for Course.all? or use conditional?
+        #binding.pry
+        @courses = Course.all
     end 
 
-    def index_all
-        @user = User.find_by(id: current_user[:user_id])
-        @courses = @user.courses
-    end
+    
+    
 
     def edit 
         @course = Course.find_by(id: params[:id])
@@ -78,7 +78,7 @@ class CoursesController < ApplicationController
     private 
 
     def course_params
-        params.require(:course).permit(:title, :description, meetings_attributes: {:day_id, :start_time, :end_time, :note}, materials_attributes: {:item}, enrollments_atributes: {start_date, :end_date, :student_id} )
+        params.require(:course).permit(:title, :description, meetings_attributes: [:day_id, :start_time, :end_time, :note], materials_attributes: [:item], enrollments_atributes: [start_date, :end_date, :student_id] )
     end
 
     def check_logged_in
