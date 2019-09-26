@@ -2,11 +2,15 @@ Rails.application.routes.draw do
 
   get '/', to: 'application#home', as: 'home'
   
-  resources :users, only: [:new, :create, :show, :edit, :update, :destroy] do 
-    resources :students do 
-      resources :courses
-    end
-  end
+  #resources :users, only: [:new, :create, :show, :edit, :update, :destroy] do 
+  #  resources :students do 
+   #   resources :courses
+   # end
+  #end
+
+  resources :users
+
+  resources :students
 
   
 
@@ -15,7 +19,9 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy'
 
   
-resources :courses
+resources :courses do 
+  resources :days, only: [:new, :create, :show]
+end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
