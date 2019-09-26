@@ -24,4 +24,10 @@ class DaysController < ApplicationController
 
     def index 
     end
+
+    private 
+
+    def day_params 
+        params.require(:day).permit(:name, meetings_attributes: [:start_time, :end_time])
+    end
 end
