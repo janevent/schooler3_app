@@ -2,12 +2,12 @@ class DaysController < ApplicationController
 
     def new 
         @course = Course.find_by(id: params[:course_id])
-        7.times do 
+
             @day = @course.build.days 
             3.times do 
                 @meeting = @day.build.meetings 
             end
-        end
+    
         
     end
 

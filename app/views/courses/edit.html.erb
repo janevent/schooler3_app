@@ -41,7 +41,7 @@
 
     <p> Set The Schedual </p>
     <%= f.fields_for :meetings do |meet| %>
-        <%= meet.select  (:name["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]) %>
+        <%= meet.collection_select  :day_id, Day.all, :id, :name, prompt: true %>["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]) %>
         
         <%= meet.label :start_time %>
     
