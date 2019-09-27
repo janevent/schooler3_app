@@ -25,9 +25,11 @@ class DaysController < ApplicationController
     def index 
         @course = Course.find_by(id: params[:course_id])
         @days = @course.days 
-        @monday_meetings = #@days.mondays.each do |mon|
-        #                       mon.ordered_meetings
-        #                   end 
+        #How to find monday meetings for just this course?
+        #@monday_meetings = 
+        #@monday_meetings = Meeting.monday_meetings
+        
+        
         #need scope method to find all mondays( where days name = Monday)
         #@mondays = @days.mondays
         #need scope method to order meetings by time...

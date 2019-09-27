@@ -8,6 +8,13 @@ class Meeting < ApplicationRecord
     
     validates_time :start_time
     validates_time :end_time
+
+    def self.ordered
+        order("start_time")
+    end
+    #scope: ordered -> {order("start_time")}
+
+    #scope: monday_meetings -> {joins(:days).where(name: "Monday").meetings}
     
     #scope: monday => {where(day: monday)}
 end
