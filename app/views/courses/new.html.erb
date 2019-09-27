@@ -39,20 +39,6 @@
 
     <%end%>
 
-    <p> Set The Schedual </p>
-    <%= f.fields_for :meetings do |meet| %>
-        <%= meet.select  (:name["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]) %>
-        
-        <%= meet.label :start_time %>
-    
-        <%= meet.text_field :start_time %>
-        
-        <%= meet.label :end_time %>
-        <%= meet.text_field :end_time %>
-        <br>
-        <br>
-    <%end%>
-
     <%= f.submit "Create Course" %>
  <%end%>
 

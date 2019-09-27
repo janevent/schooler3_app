@@ -1,7 +1,19 @@
 <h1><%= @course.title %></h1>
-
+<br>
 <%= @course.description %>
+<br>
 <p>Course Materials</p>
 <% @course.materials.each do |i| %>
-    <%= i.item %>
+    <p><%= i.item %></p>
 <%end%>
+
+<%= @course.enrollments.each do |enroll|%>
+    <%= enroll.student.name %>
+    <%= enroll.start_date %>
+    <%= enroll.end_date %>
+<%end%>
+
+
+<%= link_to "Edit Course And Set Schedule", edit_course_path(@course) %>
+<%= link_to "Add One More Meeting", new_course_meeting(@course) %>
+<%= link_to "Course Schedule", course_meetings(@course) %>
