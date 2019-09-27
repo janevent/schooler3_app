@@ -14,7 +14,7 @@ class Meeting < ApplicationRecord
     #end
     #scope: ordered -> {order("start_time")}
 
-    scope: monday_meetings -> {joins(:days).where(name: "Monday").order("start_time")}
+    scope :monday_meetings, -> {joins(:days).where(name: "Monday").order("start_time")}
     
     #scope: monday => {where(day: monday)}
 end

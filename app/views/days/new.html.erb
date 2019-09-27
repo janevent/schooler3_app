@@ -1,5 +1,5 @@
 <%= form_for @day do |f| %>
-    <%= f.select :name.options_for_select(["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]), include_blank: true %>
+    <%= f.select (:name ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]) %>
     <%= f.fields_for :meetings do |meet|%>
         <%= meet.label :start_time %>
         <%= meet.text_field :start_time %>
