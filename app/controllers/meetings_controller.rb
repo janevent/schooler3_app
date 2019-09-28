@@ -21,9 +21,14 @@ class MeetingsController < ApplicationController
     end
 
     def index 
-        @course = Course.find_by(id: params[:course_id])
-        @meetings = @course.meetings
-        @monday_meetings = Meeting.monday_meetings.where(course_id: @course.id)
+        if params[:course_id] && @course = Course.find_by(id: params[:course_id])
+            binding.pry
+            @monday_meetings = Day.day_of_week("Monday")
+            #@meetings = @course.meetings
+           # @monday_meetings = Meeting.monday_meetings.where(course_id: @course.id)
+        else
+            @meetings = Meeting.all 
+        end
         #How to find monday meetings for just this course?
         #@monday_meetings = 
         #@monday_meetings = Meeting.monday_meetings
