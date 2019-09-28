@@ -1,5 +1,5 @@
-<h1>Create a Course</h1>
-<%= form_for @course do |f| %>
+<h1>Edit a Course</h1>
+<%= form_for :course do |f| %>
     <%= f.label :title %>
     <br>
     <%= f.text_field :title %>
@@ -9,10 +9,11 @@
     <%= f.text_field :description %>
     
     <br>
-   <p> What materials will you need?:</p>
-    <%= f.collection_check_boxes(:material_id, Material.all, :id, :item) %>
-   <p> user - students-meetings-courses-course_materials- materials</p>
-    <br>
+    <p> What materials will you need?:</p>
+    <%= f.fields_for :course_materials do |material| %>
+        <%= material.collection_check_boxes(:material_id, Material.all, :item, :item) %>
+    <%end%>
+   <br>
     <p> Add materials: </p>
     <br>
     <%= f.fields_for :materials do |mat| %>
@@ -24,7 +25,7 @@
     <br>
         <p>Enroll Your Studious Children:</p>
     <%= f.fields_for :enrollments do |enroll| %>
-        <%= enroll.collection_select :student_id, Student.all, :id, :name %>
+        <%= enroll.collection_select :student_id, Student.all, :id, :name, include_blank: true %>
         <br>
         <%= enroll.label :start_date %>
         <br>
@@ -54,3 +55,4 @@
     <%end%>
 
     <%= f.submit "Edit Course" %>
+<%end%>

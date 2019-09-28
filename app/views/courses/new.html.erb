@@ -11,7 +11,7 @@
     <br>
    <p> What materials will you need?:</p>
     <%= f.collection_check_boxes(:material_id, Material.all, :id, :item) %>
-   <p> user - students-meetings-courses-course_materials- materials</p>
+   
     <br>
     <p> Add materials: </p>
     <br>
@@ -24,7 +24,7 @@
     <br>
         <p>Enroll Your Studious Children:</p>
     <%= f.fields_for :enrollments do |enroll| %>
-        <%= enroll.collection_select :student_id, Student.all, :id, :name %>
+        <%= enroll.collection_select :student_id, Student.all, :id, :name, include_blank: true %>
         <br>
         <%= enroll.label :start_date %>
         <br>

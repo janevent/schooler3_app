@@ -23,7 +23,7 @@ class MeetingsController < ApplicationController
     def index 
         @course = Course.find_by(id: params[:course_id])
         @meetings = @course.meetings
-        @monday_meetings = Meeting.monday_mornings.where(course_id: @course.id)
+        @monday_meetings = Meeting.monday_meetings.where(course_id: @course.id)
         #How to find monday meetings for just this course?
         #@monday_meetings = 
         #@monday_meetings = Meeting.monday_meetings
