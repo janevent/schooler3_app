@@ -1,12 +1,10 @@
-class DaysController < ApplicationController
+class MeetingsController < ApplicationController
 
     def new 
         @course = Course.find_by(id: params[:course_id])
-
-            @day = @course.build.days 
-            3.times do 
-                @meeting = @day.build.meetings 
-            end
+        @meeting = @course.build.meetings
+            
+        
     
         
     end
@@ -14,9 +12,9 @@ class DaysController < ApplicationController
     def create 
         #Can I make 7 days in one form? should I have a schedual tables and form?
         @course = Course.find_by(id: params[:course_id])
-        @day = Day.new(day_params)
-        if @day.save 
-            redirect_to course_days_path(@course)
+        @meeting = Meeting.new(meeting_params)
+        if @meeting.save 
+            redirect_to course_meetings_path(@course)
         else 
             render :new
         end 
@@ -24,7 +22,8 @@ class DaysController < ApplicationController
 
     def index 
         @course = Course.find_by(id: params[:course_id])
-        @days = @course.days 
+        @meetings = @course.meetings
+        @monday_meetings = Meeting.monday_mornings.where(course_id: @course.id)
         #How to find monday meetings for just this course?
         #@monday_meetings = 
         #@monday_meetings = Meeting.monday_meetings
