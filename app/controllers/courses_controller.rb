@@ -55,22 +55,24 @@ class CoursesController < ApplicationController
 
     def edit 
         @course = Course.find_by(id: params[:id])
-        4.times do 
-            @course.materials.build 
-        end 
-        5.times do 
-            @course.enrollments.build
-        end
-        7.times do 
-            @course.meetings.build
-        end
+            #update course (using nested form)
+            #4.times do 
+            #    @course.materials.build 
+            #end 
+            #5.times do 
+            #    @course.enrollments.build
+            #end
+            #7.times do 
+            #    @course.meetings.build
+            #end
+        
     end
 
     def update
         @course = Course.find_by(id: params[:id])
         @course.update(course_params) 
         if @course.valid?
-            redirect_to user_student_course_path(@course)
+            redirect_to course_path(@course)
         else
             redirect_to home_path 
         end
@@ -83,7 +85,7 @@ class CoursesController < ApplicationController
     private 
 
     def course_params
-        params.require(:course).permit(:title, :description,  materials_attributes: [:item], enrollments_atributes: [:start_date, :end_date, :student_id] )
+        params.require(:course).permit(:title, :description,  materials_attributes: [:id, :item], enrollments_atributes: [:id, :start_date, :end_date, :student_id], meetings_attributes: [:day_id, :start_time, :ebd_time] )
     end
 
     def check_logged_in

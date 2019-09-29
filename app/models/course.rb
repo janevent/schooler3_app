@@ -9,9 +9,17 @@ class Course < ApplicationRecord
     #has_many :projects
     #has_many :students, through: :projects
     validates :title, presence: true
-    accepts_nested_attributes_for :materials
+    accepts_nested_attributes_for :materials,
+        :allow_destroy => true,
+        :reject_if => all_blank
+        
 
-    accepts_nested_attributes_for :meetings 
+    accepts_nested_attributes_for :meetings
+        :reject_if => all_blank 
+
     accepts_nested_attributes_for :enrollments
+        :reject_if => all_blank
+
+        
 
 end
