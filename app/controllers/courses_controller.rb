@@ -70,8 +70,8 @@ class CoursesController < ApplicationController
 
     def update
         @course = Course.find_by(id: params[:id])
-        @course.update(course_params) 
-        if @course.valid?
+        if @course.update(course_params) 
+        
             redirect_to course_path(@course)
         else
             redirect_to home_path 

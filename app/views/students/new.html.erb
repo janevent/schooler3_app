@@ -1,7 +1,7 @@
-<%= form_tag user_students_path do %>
-    <%= label_tag('user[student][name]', "Name:")  %>
-    <%= text_field_tag('user[student][name]') %>
-    <%= label_tag('user[student][goal]', "Goal:") %>
-    <%= text_field_tag('user[student][goal]') %>
+<%= form_tag students_path do %>
+    <%= label_tag('student[name]', "Name:")  %>
+    <%= text_field_tag('student[name]') %>
+    <%= label_tag('student[goal]', "Goal:") %>
+    <%= text_field_tag('student[goal]') %>
     <%= submit_tag "Create Student" %>
 <% end%>

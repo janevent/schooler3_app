@@ -20,6 +20,10 @@ class Course < ApplicationRecord
     accepts_nested_attributes_for :enrollments
         :reject_if => all_blank
 
-        
+    def materials_attributes=(attributes)
+        attributes.values.each do |v|
+            self.materials << Material.find_or_create_by(v) if !v['item'].empty?
+        end
+    end
 
 end
