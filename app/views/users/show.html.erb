@@ -3,9 +3,8 @@
 <br>
 <h3>List of Students</h3>
 <% @students.each do |student|%>
-    <p><%= student.name %> <%= link_to "#{student.name}'s page", user_student_path(student)%></p> 
+    <p><%= student.name %> <%= link_to "#{student.name}'s page", student_path(student)%></p> 
 <%end%>
 <%= link_to "Edit Your Profile", edit_user_path %>
 <%= link_to "Add a New Student", new_student_path %>
-<%= link_to "Create a new Course", new_course_path %>
-<p> profile students schedual courses materials logout </p>
+

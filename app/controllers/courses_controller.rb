@@ -48,6 +48,7 @@ class CoursesController < ApplicationController
         #write another index for Course.all? or use conditional?
         #binding.pry
         @courses = Course.all
+        
     end 
 
     

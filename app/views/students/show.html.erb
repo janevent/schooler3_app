@@ -1,3 +1,9 @@
 <h2><%= @student.name %></h2>
-<p> Educational Goal:</p><%= @student.goal %>
+<p> Educational Goal:<%= @student.goal %></p>
 <h3> <%= @student.name%>'s Enrollments: </h3>
+<% @student.enrollments.each do |en| %>
+    <%= en.start_date %>
+    <%= en.end_date %>
+    <%= en.course.title %>
+    <%= link_to "#{en.course.title} page", course_path(en.course)%>
+<%end%>
