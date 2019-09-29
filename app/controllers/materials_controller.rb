@@ -1,4 +1,4 @@
-class Materialscontroller < ApplicationController
+class MaterialsController < ApplicationController
     
 
     def index

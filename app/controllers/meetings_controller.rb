@@ -24,6 +24,7 @@ class MeetingsController < ApplicationController
             #@meetings = @course.meetings
            # @monday_meetings = Meeting.monday_meetings.where(course_id: @course.id)
         else
+            @monday_meetings = Day.day_of_week("Monday")
             @meetings = Meeting.all 
         end
         #How to find monday meetings for just this course?
