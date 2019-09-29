@@ -13,9 +13,7 @@ class CoursesController < ApplicationController
             @enrollment = @course.enrollments.build
         end 
         # if params[:student_id] don't need to select, build an enrollment with student_id attribute equal to params[:student_id]
-        if params[:student_id]
-            @student = Student.find_by(id: params[:student_id])
-        end
+        
     end
 
     def create 
@@ -75,7 +73,7 @@ class CoursesController < ApplicationController
         
             redirect_to course_path(@course)
         else
-            redirect_to edit_course_path(@course) 
+            render 'edit' 
         end
     end 
 
@@ -86,7 +84,7 @@ class CoursesController < ApplicationController
     private 
 
     def course_params
-        params.require(:course).permit(:title, :description,  materials_attributes: [:id, :item], enrollments_atributes: [:id, :start_date, :end_date, :student_id], meetings_attributes: [:day_id, :start_time, :ebd_time] )
+        params.require(:course).permit(:title, :description,  materials_attributes: [:id, :item], enrollments_attributes: [:id, :start_date, :end_date, :student_id], meetings_attributes: [:day_id, :start_time, :end_time] )
     end
 
     def check_logged_in
