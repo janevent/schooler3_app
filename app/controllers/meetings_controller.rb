@@ -7,7 +7,6 @@ class MeetingsController < ApplicationController
 
     def create 
         #Can I make 7 days in one form? should I have a schedual tables and form?
-    
         @course = Course.find_by(id: params[:course_id])
         #binding.pry
         @meeting = @course.meetings.build(meeting_params)
@@ -26,6 +25,7 @@ class MeetingsController < ApplicationController
 
     def index 
         if params[:course_id] && @course = Course.find_by(id: params[:course_id])
+            @meetings = @course.meetings
             #binding.pry
             @monday_meetings = Day.day_of_week("Monday")
             #@meetings = @course.meetings

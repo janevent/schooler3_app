@@ -1,6 +1,11 @@
 <% if params[:course_id] %>
     <h2><%= @course.title %></h2>
-<%end%>    
+<%end%> 
+<%= binding.pry %>
+<% @meetings.each do |meet| %> 
+    <%= meet.start_time %>
+    <%= meet.end_time %>
+<%end%>  
 <h3>Monday</h3>
 <% if !@monday_meetings.empty? %>
     <%= @monday_meetings.each do |meet| %>

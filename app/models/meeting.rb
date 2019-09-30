@@ -1,7 +1,7 @@
 class Meeting < ApplicationRecord
     belongs_to :day
     belongs_to :course 
-    belongs_to :student
+    belongs_to :user
     
     #delegate :user, to: => :student
    # belongs_to :user, through: :student

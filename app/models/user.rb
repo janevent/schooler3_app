@@ -1,7 +1,7 @@
 class User < ApplicationRecord
     has_secure_password
     has_many :students
-    has_many :meetings, through: :students
+    has_many :meetings
     
     validates :name, presence: true
     validates :name, uniqueness: true
