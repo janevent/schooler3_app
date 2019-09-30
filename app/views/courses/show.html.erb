@@ -1,20 +1,25 @@
 <h1><%= @course.title %></h1>
 <br>
+<h3>Description:</h3>
 <%= @course.description %>
 <br>
-<p>Course Materials</p>
+<h3>Course Materials</h3>
 <% @course.materials.each do |i| %>
     <p><%= i.item %></p>
 <%end%>
 
-<%= @course.enrollments.each do |enroll|%>
+<% @course.enrollments.each do |enroll|%>
     
     <%= enroll.student.name %>
-    <%= enroll.start_date %>
-    <%= enroll.end_date %>
+    <br>
+    <p>Start Date:  <%= enroll.start_date %></p>
+    <p>End Date:  <%= enroll.end_date %></p>
 <%end%>
+<br>
 
 
 <%= link_to "Edit Course And Set Schedule", edit_course_path(@course) %>
+<br>
 <%= link_to "Add One More Meeting", new_course_meeting_path(@course) %>
+<br
 <%= link_to "Course Schedule", course_meetings_path(@course) %>
