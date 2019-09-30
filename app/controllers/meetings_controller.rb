@@ -7,7 +7,9 @@ class MeetingsController < ApplicationController
 
     def create 
         #Can I make 7 days in one form? should I have a schedual tables and form?
+    
         @course = Course.find_by(id: params[:course_id])
+        #binding.pry
         @meeting = @course.meetings.build(meeting_params)
         if @meeting.save 
             redirect_to course_meeting_path(@course, @meeting)
@@ -15,6 +17,11 @@ class MeetingsController < ApplicationController
             #render :new
             redirect_to new_course_meeting_path(@course)
         end 
+    end
+
+    def show 
+        @course = Course.find_by(id: params[:course_id])
+        @meeting = Meeting.find_by(id: params[:id])
     end
 
     def index 
@@ -40,6 +47,6 @@ class MeetingsController < ApplicationController
     private 
 
     def meeting_params 
-        params.require(:meeting).permit(:day_id, :start_time, :end_time)
+        params.require(:meeting).permit(:day_id, :start_time, :end_time, :student_id)
     end
 end
