@@ -1,1 +1,5 @@
-<p>This is Meeting's show page</p>
+
+<h3>Meeting for <%=@course.title%> Course</h3>
+<p>Start Time: <%=@meeting.start_time.strftime("%l %M %p")%><p>
+
+<p>End Time: <%=@meeting.end_time.strftime("%l %M %p")%></p>

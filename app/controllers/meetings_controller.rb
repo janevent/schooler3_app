@@ -44,6 +44,11 @@ class MeetingsController < ApplicationController
         #need scope method to order meetings by time...
     end
 
+    def destroy 
+        @meeting = Meeting.find_by(id: params[:id])
+        @meeting.destroy
+    end
+
     private 
 
     def meeting_params 

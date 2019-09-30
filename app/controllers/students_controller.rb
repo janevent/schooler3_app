@@ -67,6 +67,9 @@ class StudentsController < ApplicationController
         end 
     end
 
+    def destroy
+        @student = Student.find_by(id: params[:id])
+    end
 
     private 
 

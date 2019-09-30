@@ -1,15 +1,16 @@
 <% if params[:course_id] %>
     <h2><%= @course.title %></h2>
-<%end%> 
-<%= binding.pry %>
+<%end%>
 <% @meetings.each do |meet| %> 
-    <%= meet.start_time %>
-    <%= meet.end_time %>
+    <%= meet.start_time.strftime( "%l %M %p") %>
+    <%= meet.end_time.strftime( "%l %M %p") %>
 <%end%>  
 <h3>Monday</h3>
 <% if !@monday_meetings.empty? %>
-    <%= @monday_meetings.each do |meet| %>
-        <p>Start Time:<%= meet.start_time %> End Time: <%= meet.end_time %></p>
+    <% @monday_meetings.each do |day| %>
+        <% day.meetings.each do |meet| %>
+            <p>Start Time:<%= meet.start_time.strftime( "%l %M %p")%>  End Time: <%= meet.end_time.strftime( "%l %M %p") %></p>
+        <%end%>
     <%end%>
 <%end%>
 <h3>Tuesday</h3>
