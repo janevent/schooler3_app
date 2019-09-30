@@ -1,3 +1,4 @@
+
 <%= form_for [@course, @meeting] do |f| %>
     <%= f.collection_select :day_id, Day.all, :id, :name %>
     

@@ -69,10 +69,22 @@ class CoursesController < ApplicationController
 
     def update
         @course = Course.find_by(id: params[:id])
-        if @course.update(course_params) 
+        @course.update(course_params) 
+        if @course.save
         
             redirect_to course_path(@course)
         else
+            4.times do 
+                @course.materials.build 
+            end 
+            5.times do 
+                @course.enrollments.build
+            end
+            7.times do 
+                 @course.meetings.build
+            end
+     
+
             render 'edit' 
         end
     end 

@@ -8,6 +8,7 @@
 <%end%>
 
 <%= @course.enrollments.each do |enroll|%>
+    
     <%= enroll.student.name %>
     <%= enroll.start_date %>
     <%= enroll.end_date %>
