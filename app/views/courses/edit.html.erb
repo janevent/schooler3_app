@@ -51,6 +51,7 @@
         
         <%= meet.label :end_time %>
         <%= meet.text_field :end_time %>
+        <%= meet.hidden_field :user_id, value: current_user.id %>
         <br>
         <br>
     <%end%>
