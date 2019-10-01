@@ -97,7 +97,7 @@ class CoursesController < ApplicationController
     private 
 
     def course_params
-        params.require(:course).permit(:title, :description,  materials_attributes: [:id, :item], enrollments_attributes: [:id, :start_date, :end_date, :student_id], meetings_attributes: [:day_id, :start_time, :end_time, :user_id] )
+        params.require(:course).permit(:title, :description,  course_materials_attributes: [:material_id, material_attributes: [:id, :item]], enrollments_attributes: [:id, :start_date, :end_date, :student_id], meetings_attributes: [:day_id, :start_time, :end_time, :user_id] )
     end
 
     def check_logged_in

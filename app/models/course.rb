@@ -36,9 +36,9 @@ class Course < ApplicationRecord
         :reject_if => :all_blank
     
 
-    def materials_attributes=(attributes)
+    def course_materials_attributes=(attributes)
         attributes.values.each do |v|
-            self.materials << Material.find_or_create_by(v) if !v['item'].empty?
+            self.course_materials << CourseMaterial.find_or_create_by(v) if !v['material_attributes'].empty?
         end
     end
 
