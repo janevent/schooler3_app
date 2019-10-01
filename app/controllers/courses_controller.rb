@@ -77,7 +77,8 @@ class CoursesController < ApplicationController
             redirect_to course_path(@course)
         else
             4.times do 
-                @course.course_materials.build 
+                @m =  @course.course_materials.build 
+                @m.build_material
             end 
             5.times do 
                 @course.enrollments.build

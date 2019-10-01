@@ -27,11 +27,25 @@ class MeetingsController < ApplicationController
         if params[:course_id] && @course = Course.find_by(id: params[:course_id])
             @meetings = @course.meetings
             #binding.pry
-            @monday_meetings = Day.day_of_week("Monday")
+            @monday_meetings = @meetings.day_of_week("Monday")
+            @tuesday_meetings = @meetings.day_of_week("Tuesday")
+            @wednesday_meetings = @meetings.day_of_week("Wednesday")
+            @thursday_meetings = @meetings.day_of_week("Thursday")
+            @friday_meetings = @meetings.day_of_week("Friday")
+            @saturday_meetings = @meetings.day_of_week("Saturday")
+            @sunday_meetings = @meetings.day_of_week("Sunday")
             #@meetings = @course.meetings
            # @monday_meetings = Meeting.monday_meetings.where(course_id: @course.id)
         else
             @monday_meetings = Day.day_of_week("Monday")
+            @tuesday_meetings = @meetings.day_of_week("Tuesday")
+            @wednesday_meetings = @meetings.day_of_week("Wednesday")
+            @thursday_meetings = @meetings.day_of_week("Thursday")
+            @friday_meetings = @meetings.day_of_week("Friday")
+            @saturday_meetings = @meetings.day_of_week("Saturday")
+            @sunday_meetings = @meetings.day_of_week("Sunday")
+            
+            
             @meetings = Meeting.all 
         end
         #How to find monday meetings for just this course?

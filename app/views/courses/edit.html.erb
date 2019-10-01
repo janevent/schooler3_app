@@ -11,8 +11,8 @@
     
     <br>
     <p> Edit the materials you will need:</p>
-    <%= f.fields_for :course_materials do |material| %>
-        <%= material.fields_for :material do |mat| %>
+    <%= f.fields_for :course_materials do |comat| %>
+        <%= comat.fields_for :material do |mat| %>
             <%= mat.label :item  %>
             <br>
             <%= mat.text_field :item %>
@@ -23,15 +23,14 @@
         <p>Enroll Your Studious Children:</p>
     <%= f.fields_for :enrollments do |enroll| %>
         <%= enroll.collection_select :student_id, Student.all, :id, :name, include_blank: true %>
-        <br>
+        
         <%= enroll.label :start_date %>
-        <br>
+        
         <%= enroll.text_field :start_date %>
-        <br>
+        
         <%= enroll.label :end_date %>
-        <br>
+        
         <%= enroll.text_field :start_date %>
-        <br>
         
         <br>
 
@@ -39,7 +38,7 @@
 
     <p> Set The Schedual </p>
     <%= f.fields_for :meetings do |meet| %>
-        <%= meet.collection_select  :day_id, Day.all, :id, :name, prompt: true %>
+        <%= meet.collection_select  :day_id, Day.all, :id, :name, prompt: true, include_blank: true %>
         
         <%= meet.label :start_time %>
     

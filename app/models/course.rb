@@ -33,16 +33,27 @@ class Course < ApplicationRecord
     
 
     accepts_nested_attributes_for :enrollments,
-        :reject_if => :all_blank
+        :reject_if => :reject_student
+
+    def reject_student(attributes)
+        attributes['student_id'].blank?
+    end
     
 
-    def course_materials_attributes=(attributes)
-        
+    def meetings_attributes=(attributes)
+        attributes.values.each do |v|
+            self.meetings << Meeting.find_or_create_by(v) if !v['day_id'].empty? && !v['start_time'].empty?
+        end
     end
 
     def materials_attributes=(attributes)
         attributes.values.each do |v|
             self.materials << Material.find_or_create_by(v) if !v['item'].empty?
+        end
+    end
+
+    def course_materials_attributes=(attributes)
+      #binding.pry  
     end
 
 end
