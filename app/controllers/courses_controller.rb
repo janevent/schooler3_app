@@ -6,7 +6,8 @@ class CoursesController < ApplicationController
         @course = Course.new
 
         4.times do
-            @course.materials.build
+            cm = @course.course_materials.build
+            cm.build_material
         end
         
         3.times do
@@ -56,9 +57,10 @@ class CoursesController < ApplicationController
         @course = Course.find_by(id: params[:id])
             #update course (using nested form)
             4.times do 
-               @course.materials.build 
+               cm = @course.course_materials.build 
+               cm.build_material
             end 
-            5.times do 
+            3.times do 
                 @course.enrollments.build
             end
             7.times do 
@@ -75,7 +77,7 @@ class CoursesController < ApplicationController
             redirect_to course_path(@course)
         else
             4.times do 
-                @course.materials.build 
+                @course.course_materials.build 
             end 
             5.times do 
                 @course.enrollments.build

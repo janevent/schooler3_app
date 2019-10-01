@@ -37,9 +37,12 @@ class Course < ApplicationRecord
     
 
     def course_materials_attributes=(attributes)
+        
+    end
+
+    def materials_attributes=(attributes)
         attributes.values.each do |v|
-            self.course_materials << CourseMaterial.find_or_create_by(v) if !v['material_attributes'].empty?
-        end
+            self.materials << Material.find_or_create_by(v) if !v['item'].empty?
     end
 
 end

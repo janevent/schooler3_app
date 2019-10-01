@@ -10,12 +10,9 @@
     <%= f.text_field :description %>
     
     <br>
-    <p> What materials will you need?:</p>
+    <p> Edit the materials you will need:</p>
     <%= f.fields_for :course_materials do |material| %>
-        
-        <p> Edit Materials: </p>
-        <br>
-        <%= material.fields_for :materials do |mat| %>
+        <%= material.fields_for :material do |mat| %>
             <%= mat.label :item  %>
             <br>
             <%= mat.text_field :item %>
