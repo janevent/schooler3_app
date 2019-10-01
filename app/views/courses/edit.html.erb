@@ -1,4 +1,5 @@
 <h1>Edit a Course</h1>
+<%= render partial: 'layouts/errors', locals: {object:@course} %>
 <%= form_for @course do |f| %>
     <%= f.label :title %>
     <br>
@@ -11,17 +12,15 @@
     <br>
     <p> What materials will you need?:</p>
     <%= f.fields_for :course_materials do |material| %>
-        <%= material.collection_check_boxes(:material_id, Material.all, :item, :item) %>
         
-    <%end%>
-   <br>
-    <p> Add materials: </p>
-    <br>
-    <%= f.fields_for :materials do |mat| %>
-        <%= mat.label :item  %>
+        <p> Edit Materials: </p>
         <br>
-        <%= mat.text_field :item %>
-        <br>
+        <%= material.fields_for :materials do |mat| %>
+            <%= mat.label :item  %>
+            <br>
+            <%= mat.text_field :item %>
+            <br>
+        <%end%>
     <%end%>
     <br>
         <p>Enroll Your Studious Children:</p>

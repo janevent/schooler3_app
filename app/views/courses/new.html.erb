@@ -11,19 +11,21 @@
     
     <br>
    <p> What materials will you need?:</p>
-   <%= f.fields_for :course_materials do |ct| %>
-        <%= ct.collection_check_boxes(:material_id, Material.all, :id, :item) %>
-    <%end%> 
+   <%= f.fields_for :course_materials do |cm| %>
+        <%= cm.collection_check_boxes(:material_id, Material.all, :id, :item) %>
+    
    
-    <br>
-    <p> Create new materials: </p>
-    <br>
-    <%= f.fields_for :materials do |mat| %>
-        <%= mat.label :item  %>
         <br>
-        <%= mat.text_field :item %>
+        <p> Create new materials: </p>
         <br>
+        <%= cm.fields_for :materials do |mat| %>
+            <%= mat.label :item  %>
+            <br>
+            <%= mat.text_field :item %>
+            <br>
+        <%end%>
     <%end%>
+    
     <br>
         <p>Enroll Your Studious Children:</p>
     <%= f.fields_for :enrollments do |enroll| %>

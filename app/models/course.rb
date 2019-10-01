@@ -15,7 +15,21 @@ class Course < ApplicationRecord
         
 
     accepts_nested_attributes_for :meetings,
-        :reject_if => :all_blank 
+        :reject_if => :reject_days,
+        :reject_if => :reject_start,
+        :reject_if => :reject_end
+
+    def reject_days(attributes)
+        attributes['day_id'].blank?
+    end   
+    
+    def reject_start(attributes)
+        attributes['start_time'].blank?
+    end
+
+    def reject_end(attributes)
+        attributes['end_time'].blank?
+    end
     
 
     accepts_nested_attributes_for :enrollments,
