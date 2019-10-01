@@ -76,19 +76,8 @@ class CoursesController < ApplicationController
         
             redirect_to course_path(@course)
         else
-            4.times do 
-                @m =  @course.course_materials.build 
-                @m.build_material
-            end 
-            5.times do 
-                @course.enrollments.build
-            end
-            7.times do 
-                 @course.meetings.build
-            end
-     
-
-            render 'edit' 
+            
+            rendirect_to  edit_course_path(@course) 
         end
     end 
 

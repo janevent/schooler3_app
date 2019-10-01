@@ -25,7 +25,8 @@ class MeetingsController < ApplicationController
 
     def index 
         if params[:course_id] && @course = Course.find_by(id: params[:course_id])
-            @meetings = @course.meetings
+            @meetings = @course.days
+
             #binding.pry
             @monday_meetings = @meetings.day_of_week("Monday")
             @tuesday_meetings = @meetings.day_of_week("Tuesday")
@@ -38,12 +39,12 @@ class MeetingsController < ApplicationController
            # @monday_meetings = Meeting.monday_meetings.where(course_id: @course.id)
         else
             @monday_meetings = Day.day_of_week("Monday")
-            @tuesday_meetings = @meetings.day_of_week("Tuesday")
-            @wednesday_meetings = @meetings.day_of_week("Wednesday")
-            @thursday_meetings = @meetings.day_of_week("Thursday")
-            @friday_meetings = @meetings.day_of_week("Friday")
-            @saturday_meetings = @meetings.day_of_week("Saturday")
-            @sunday_meetings = @meetings.day_of_week("Sunday")
+            @tuesday_meetings = Day.day_of_week("Tuesday")
+            @wednesday_meetings = Day.day_of_week("Wednesday")
+            @thursday_meetings = Day.day_of_week("Thursday")
+            @friday_meetings = Day.day_of_week("Friday")
+            @saturday_meetings = Day.day_of_week("Saturday")
+            @sunday_meetings = Day.day_of_week("Sunday")
             
             
             @meetings = Meeting.all 
@@ -59,8 +60,10 @@ class MeetingsController < ApplicationController
     end
 
     def destroy 
+       # binding.pry
         @meeting = Meeting.find_by(id: params[:id])
         @meeting.destroy
+        redirect_to meetings_path
     end
 
     private 

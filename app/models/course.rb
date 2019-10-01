@@ -5,6 +5,7 @@ class Course < ApplicationRecord
     has_many :students, through: :enrollments
     
     has_many :meetings
+    has_many :days, through: :meetings
     
     #has_many :projects
     #has_many :students, through: :projects
@@ -42,6 +43,7 @@ class Course < ApplicationRecord
 
     def meetings_attributes=(attributes)
         attributes.values.each do |v|
+            binding.pry
             self.meetings << Meeting.find_or_create_by(v) if !v['day_id'].empty? && !v['start_time'].empty?
         end
     end
