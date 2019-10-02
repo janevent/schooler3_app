@@ -26,7 +26,7 @@ end
 resources :meetings, only: [:index, :destroy]
 
 resources :courses do 
-  resources :materials, only: [:index, :destroy, :show]
+  resources :materials, only: [:index, :destroy, :show, :new, :create]
 end
 
 

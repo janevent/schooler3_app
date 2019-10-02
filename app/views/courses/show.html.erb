@@ -6,6 +6,7 @@
 <h3>Course Materials:</h3>
 <% @course.materials.each do |i| %>
     <p><%= i.item %></p>
+    <%= button_to "delete", material_path(i.id), :method => "delete", data: {confirm: 'Are you sure?'} %>
 <%end%>
 
 <h3>Student Enrollments:</h3>
@@ -25,3 +26,7 @@
 <%= link_to "Add One More Meeting", new_course_meeting_path(@course) %>
 <br>
 <%= link_to "Course Schedule", course_meetings_path(@course) %>
+<br>
+<%= link_to "Add a New Material", new_course_material_path(@course) %>
+<br>
+<%= link_to "See Course Materials", course_materials_path(@course) %>

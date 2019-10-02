@@ -1,10 +1,10 @@
 <% if @course %>
     <h2><%= @course.title %></h2>
 <%end%>
+
 <h2>Your Required Materials: </h2>
-<ul>
+
 <% @materials.each do |mat| %>
-    <li><%= mat.item %></li>
-    <%= button_to "delete", material_path(mat.id), :method => "delete", data: {confirm: Are you sure?} %>
+    <%= mat.item %>
+    <%= button_to "delete", material_path(mat.id), :method => "delete", data: { confirm: 'Are you sure?' } %>
 <%end%>
-</ul>
