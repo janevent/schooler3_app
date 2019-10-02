@@ -5,9 +5,10 @@
 <h3>Monday</h3>
 
 <% if !@monday_meetings.empty? %>
-    <% monday_meetings.each do |day| %>
+    <% @monday_meetings.each do |day| %>
         
         <% day.meetings.each do |meet| %>
+            <%= meet.course.title %>
             <p>Start Time:<%= meet.start_time.strftime( "%l %M %p")%>  End Time: <%= meet.end_time.strftime( "%l %M %p") %></p>
             <%= button_to "delete", meeting_path(meet.id), :method => "delete", data: { confirm: 'Are you sure?' } %> 
 
@@ -18,19 +19,23 @@
 
 
 <h3>Tuesday</h3>
-<%= render(:partial => 'meetings', :locals => {:object => @tuesday_meetings}) %>
+<%= render partial: 'meetings', locals: {object: @tuesday_meetings} %>
 
 <h3>Wednesday</h3>
 <%= render(:partial => 'meetings', :locals => {:object => @wednesday_meetings}) %>
 
 <h3>Thursday</h3>
-<%= render (:partial => 'meetings', :locals => {:object => @thursday_meetings}) %>
+<%= render(:partial => 'meetings', :locals => {:object => @thursday_meetings}) %>
 
 <h3>Friday</h3>
-<%= render (:partial => 'meetings', :locals => {:object => @friday_meetings}) %>
+<%= render(:partial => 'meetings', :locals => {:object => @friday_meetings}) %>
 
 <h3>Saturday</h3>
-<%= render (:partial => 'meetings', :locals => {:object => @saturday_meetings}) %>
+<%= render(:partial => 'meetings', :locals => {:object => @saturday_meetings}) %>
 
 <h3>Sunday</h3>
-<%= render (:partial => 'meetings', :locals => {:object => @sunday_meetings} %>
+<%= render(:partial => 'meetings', :locals => {:object => @sunday_meetings}) %>
+
+<% if params[:course_id] %>
+    <%= link_to "Add Meeting", new_course_meeting_path(@course) %>
+<%end%> 

@@ -1,3 +1,6 @@
+<% if @course %>
+    <h2><%= @course.title %></h2>
+<%end%>
 <h2>Your Required Materials: </h2>
 <ul>
 <% @materials.each do |mat| %>

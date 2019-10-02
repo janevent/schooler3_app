@@ -3,6 +3,8 @@
     <% object.each do |day| %>
         
         <% day.meetings.each do |meet| %>
+            
+            <P><%= meet.course.title %></p>
             <p>Start Time:<%= meet.start_time.strftime( "%l %M %p")%>  End Time: <%= meet.end_time.strftime( "%l %M %p") %></p>
             <%= button_to "delete", meeting_path(meet.id), :method => "delete", data: { confirm: 'Are you sure?' } %> 
 
