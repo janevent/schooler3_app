@@ -3,68 +3,22 @@
 <%end%>
 
 <h3>Monday</h3>
-<% if !@monday_meetings.empty? %>
-    <% @monday_meetings.each do |day| %>
-        <% day.meetings.each do |meet| %>
-            <p>Start Time:<%= meet.start_time.strftime( "%l %M %p")%>  End Time: <%= meet.end_time.strftime( "%l %M %p") %></p>
-            
-        <%end%>
-    <%end%>
-<%end%>
+<%= render partial: 'meeting', locals: {object: @monday_mornings} %>
+
 <h3>Tuesday</h3>
-<% if !@tuesday_meetings.empty? %>
-    <% @tuesday_meetings.each do |day| %>
-        <% day.meetings.each do |meet| %>
-            <p>Start Time:<%= meet.start_time.strftime( "%l %M %p")%>  End Time: <%= meet.end_time.strftime( "%l %M %p") %></p>
-        <%end%>
-    <%end%>
-<%end%>
+<%= render partial: 'meeting', locals: {object: @tuesday_mornings} %>
 
 <h3>Wednesday</h3>
-<% if !@wednesday_meetings.empty? %>
-    <% @wednesday_meetings.each do |day| %>
-        
-        <% day.meetings.each do |meet| %>
-            <p>Start Time:<%= meet.start_time.strftime( "%l %M %p")%>  End Time: <%= meet.end_time.strftime( "%l %M %p") %></p>
-            <%= button_to "delete", meeting_path(meet.id), :method => "delete", data: { confirm: 'Are you sure?' } %> 
-
-            <br/>
-        <%end%>
-    <%end%>
-<%end%>
+<%= render partial: 'meeting', locals: {object: @wednesday_mornings} %>
 
 <h3>Thursday</h3>
-<% if !@thursday_meetings.empty? %>
-    <% @thursday_meetings.each do |day| %>
-        <% day.meetings.each do |meet| %>
-            <p>Start Time:<%= meet.start_time.strftime( "%l %M %p")%>  End Time: <%= meet.end_time.strftime( "%l %M %p") %></p>
-        <%end%>
-    <%end%>
-<%end%>
+<%= render partial: 'meeting', locals: {object: @thursday_mornings} %>
 
 <h3>Friday</h3>
-<% if !@friday_meetings.empty? %>
-    <% @friday_meetings.each do |day| %>
-        <% day.meetings.each do |meet| %>
-            <p>Start Time:<%= meet.start_time.strftime( "%l %M %p")%>  End Time: <%= meet.end_time.strftime( "%l %M %p") %></p>
-        <%end%>
-    <%end%>
-<%end%>
+<%= render partial: 'meeting', locals: {object: @friday_mornings} %>
 
 <h3>Saturday</h3>
-<% if !@saturday_meetings.empty? %>
-    <% @saturday_meetings.each do |day| %>
-        <% day.meetings.each do |meet| %>
-            <p>Start Time:<%= meet.start_time.strftime( "%l %M %p")%>  End Time: <%= meet.end_time.strftime( "%l %M %p") %></p>
-        <%end%>
-    <%end%>
-<%end%>
+<%= render partial: 'meeting', locals: {object: @saturday_mornings} %>
 
 <h3>Sunday</h3>
-<% if !@sunday_meetings.empty? %>
-    <% @sunday_meetings.each do |day| %>
-        <% day.meetings.each do |meet| %>
-            <p>Start Time:<%= meet.start_time.strftime( "%l %M %p")%>  End Time: <%= meet.end_time.strftime( "%l %M %p") %></p>
-        <%end%>
-    <%end%>
-<%end%>
+<%= render partial: 'meeting', locals: {object: @sunday_mornings} %>

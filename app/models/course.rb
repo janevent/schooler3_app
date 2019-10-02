@@ -15,22 +15,22 @@ class Course < ApplicationRecord
       #  :reject_if => all_blank
         
 
-    accepts_nested_attributes_for :meetings,
-        :reject_if => :reject_days,
-        :reject_if => :reject_start,
-        :reject_if => :reject_end
+    #accepts_nested_attributes_for :meetings,
+     #   :reject_if => :reject_days,
+      #  :reject_if => :reject_start,
+       # :reject_if => :reject_end
+#
+ #   def reject_days(attributes)
+  #      attributes['day_id'].blank?
+   # end   
+    #
+    #def reject_start(attributes)
+     #   attributes['start_time'].blank?
+    #end
 
-    def reject_days(attributes)
-        attributes['day_id'].blank?
-    end   
-    
-    def reject_start(attributes)
-        attributes['start_time'].blank?
-    end
-
-    def reject_end(attributes)
-        attributes['end_time'].blank?
-    end
+    #def reject_end(attributes)
+     #   attributes['end_time'].blank?
+    #end
     
 
     accepts_nested_attributes_for :enrollments,
@@ -43,8 +43,8 @@ class Course < ApplicationRecord
 
     def meetings_attributes=(attributes)
         attributes.values.each do |v|
-            binding.pry
-            self.meetings << Meeting.find_or_create_by(v) if !v['day_id'].empty? && !v['start_time'].empty?
+           #binding.pry
+            self.meetings << Meeting.find_or_create_by(v) if !v['day_id'].blank? && !v['start_time'].blank?
         end
     end
 
