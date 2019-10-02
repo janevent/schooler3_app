@@ -11,10 +11,10 @@
     
     <br>
    <p> What materials will you need?:</p>
+
+   <%= f.collection_check_boxes(:material_id, Material.all, :id, :item) %>
+
    <%= f.fields_for :course_materials do |cm| %>
-        <%= cm.collection_check_boxes(:material_id, Material.all, :id, :item) %>
-    
-   
         <br>
         <p> Create new materials: </p>
         <br>

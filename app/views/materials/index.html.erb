@@ -2,5 +2,6 @@
 <ul>
 <% @materials.each do |mat| %>
     <li><%= mat.item %></li>
+    <%= button_to "delete", material_path(mat.id), :method => "delete", data: {confirm: Are you sure?} %>
 <%end%>
 </ul>

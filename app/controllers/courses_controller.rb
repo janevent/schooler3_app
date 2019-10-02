@@ -55,6 +55,7 @@ class CoursesController < ApplicationController
 
     def edit 
         @course = Course.find_by(id: params[:id])
+        if @course
             #update course (using nested form)
             4.times do 
                cm = @course.course_materials.build 
@@ -66,6 +67,9 @@ class CoursesController < ApplicationController
             7.times do 
                 @course.meetings.build
             end
+        else 
+            redirect_to courses_path
+        end
         
     end
 
