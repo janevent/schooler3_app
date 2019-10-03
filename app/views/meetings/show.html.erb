@@ -3,3 +3,6 @@
 <p>Start Time: <%=@meeting.start_time.strftime("%l %M %p")%><p>
 
 <p>End Time: <%=@meeting.end_time.strftime("%l %M %p")%></p>
+
+<br>
+<%= link_to "Go Back To #{@course.title}", course_path(@course) %>

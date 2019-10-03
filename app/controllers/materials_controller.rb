@@ -3,10 +3,11 @@ class MaterialsController < ApplicationController
 
     def index
         if params[:course_id]
-            @course = Course.find_by(params[:course_id])
+            #binding.pry
+            @course = Course.find_by(id: params[:course_id])
             @materials = @course.materials 
         else
-            @user = User.find_by(id: current_user[:user_id])
+            #@user = User.find_by(id: current_user[:user_id])
             @materials = Material.all
         end #how to access a users materials
         #current_user.students.each do |stu|
@@ -20,14 +21,14 @@ class MaterialsController < ApplicationController
     end
 
     def new 
-        @course = Course.find_by(params[:course_id])
+        @course = Course.find_by(id: params[:course_id])
         #@material = @course.materials.build
         @material = Material.new
     end
 
     def create 
        # binding.pry
-        @course = Course.find_by(params[:course_id])
+        @course = Course.find_by(id: params[:course_id])
         @material = @course.materials.create(item: params[:material][:item])
         if @material
             redirect_to course_path(@course)

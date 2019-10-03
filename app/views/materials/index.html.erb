@@ -1,4 +1,4 @@
-<% if @course %>
+<% if params[:course_id] %>
     <h2><%= @course.title %></h2>
 <%end%>
 
@@ -7,4 +7,9 @@
 <% @materials.each do |mat| %>
     <%= mat.item %>
     <%= button_to "delete", material_path(mat.id), :method => "delete", data: { confirm: 'Are you sure?' } %>
+<%end%>
+<br>
+
+<% if params[:course_id] %>
+    <%= link_to "Add a New Material", new_course_material_path(@course) %>
 <%end%>

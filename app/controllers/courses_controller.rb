@@ -88,6 +88,7 @@ class CoursesController < ApplicationController
     def destroy 
         @course = Course.find_by(id: params[:id])
         @course.destroy
+        redirect_to courses_path
     end
 
     private 

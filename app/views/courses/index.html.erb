@@ -1,14 +1,15 @@
 
 <% @courses.each do |course| %>
-   <h3> <%= course.title %></h3> <p><%= link_to "go to #{course.title}", course_path(course) %></p>
+   <h2> <%= course.title %></h2> <p><%= link_to "go to #{course.title}", course_path(course) %></p>
    <h4>Students Enrolled:</h4>
    
    <% if course.students %>
         <% course.students.each do |student| %>
-            <%= student.name %>
+           <p> <%= student.name %></p>
         <%end%>
     <%else%>
             <p>There are no students enrolled yet</p>
     <%end%>
    <p><%= link_to "go to #{course.title}'s schedule", course_meetings_path(course)%></p>
+   <br>
 <%end%>
