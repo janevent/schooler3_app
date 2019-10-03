@@ -60,11 +60,12 @@ class StudentsController < ApplicationController
 
     def update
         @user = User.find_by(id: current_user.id)
-
-        if current_user && @student = @user.students.update(name: params[:name], goal: params[:goal])
+        @student = Student.find_by(id: params[:id])
+        @student.update(name: params[:name], goal: params[:goal])
+        if current_user && @student
             redirect_to student_path( @student)
         elsif current_user
-            render '/edit'
+            redirect_to edit_student_path(@student)
         else 
             redirect_to home_path 
         end 
