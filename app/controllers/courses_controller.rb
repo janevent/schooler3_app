@@ -4,9 +4,8 @@ class CoursesController < ApplicationController
 
     def new 
         @course = Course.new
-
+        cm = @course.course_materials.build
         4.times do
-            cm = @course.course_materials.build
             cm.build_material
         end
         
@@ -22,7 +21,7 @@ class CoursesController < ApplicationController
             @student = Student.find_by(id: params[:student_id])
             @course = @student.courses.build(course_params)
             if @course.save!
-                redirect_to user_student_course_path(@student, @course)
+                redirect_to course_path( @course)
             else 
                 redirect_to new_user_student_course_path(@student)
             end
@@ -57,10 +56,10 @@ class CoursesController < ApplicationController
         @course = Course.find_by(id: params[:id])
         if @course
             #update course (using nested form)
-            4.times do 
-               cm = @course.course_materials.build 
-               cm.build_material
-            end 
+            #4.times do 
+             #  cm = @course.course_materials.build 
+              # cm.build_material
+            #end 
             3.times do 
                 @course.enrollments.build
             end

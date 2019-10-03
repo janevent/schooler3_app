@@ -10,15 +10,7 @@
     <%= f.text_field :description %>
     
     <br>
-    <p> Edit the materials you will need:</p>
-    <%= f.fields_for :course_materials do |comat| %>
-        <%= comat.fields_for :material do |mat| %>
-            <%= mat.label :item  %>
-            <br>
-            <%= mat.text_field :item %>
-            <br>
-        <%end%>
-    <%end%>
+    
     <br>
         <p>Enroll Your Studious Children:</p>
     <%= f.fields_for :enrollments do |enroll| %>
@@ -36,20 +28,6 @@
 
     <%end%>
 
-    <p> Set The Schedual </p>
-    <%= f.fields_for :meetings do |meet| %>
-        <%= meet.collection_select  :day_id, Day.all, :id, :name, prompt: true, include_blank: true %>
-        
-        <%= meet.label :start_time %>
     
-        <%= meet.text_field :start_time %>
-        
-        <%= meet.label :end_time %>
-        <%= meet.text_field :end_time %>
-        <%= meet.hidden_field :user_id, value: current_user.id %>
-        <br>
-        <br>
-    <%end%>
-
     <%= f.submit "Edit Course" %>
 <%end%>
