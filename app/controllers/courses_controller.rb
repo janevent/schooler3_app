@@ -12,6 +12,9 @@ class CoursesController < ApplicationController
         3.times do
             @enrollment = @course.enrollments.build
         end 
+        7.times do 
+            @meeting = @course.meetings.build
+        end
         # if params[:student_id] don't need to select, build an enrollment with student_id attribute equal to params[:student_id]
         
     end
@@ -62,10 +65,7 @@ class CoursesController < ApplicationController
             #end 
             3.times do 
                 @course.enrollments.build
-            end
-            7.times do 
-                @course.meetings.build
-            end
+            end  
         else 
             redirect_to courses_path
         end
