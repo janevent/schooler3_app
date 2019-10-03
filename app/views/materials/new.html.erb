@@ -1,0 +1,6 @@
+<h2>Add A New Material For <%= @course.title %></h2>
+<%= form_for [@course, @material] do |f| %>
+    <%= f.label :item %>
+    <%= f.text_field :item %>
+    <%= f.submit "Create An Item" %>
+<%end%>

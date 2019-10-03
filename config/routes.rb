@@ -30,7 +30,7 @@ resources :courses do
 end
 
 
-resources :materials, only: [:index, :destroy]
+resources :materials, only: [:index, :destroy, :create]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
