@@ -28,7 +28,7 @@ class UsersController < ApplicationController
 
     def edit 
         if logged_in?
-            @user = User.find_by(id: current_user[:user_id])
+            @user = User.find_by(id: current_user.id)
         else 
             redirect_to home_path
         end

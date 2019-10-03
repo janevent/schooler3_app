@@ -11,4 +11,5 @@
 <br>
 <br>
 
+<%= link_to "Edit Student Profile", edit_student_path(@student) %>
 <%= button_to "delete Student", student_path(@student), :method => "delete", data: {confirm: "Are you sure?"} %>
