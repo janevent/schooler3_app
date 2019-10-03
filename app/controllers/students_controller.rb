@@ -40,7 +40,7 @@ class StudentsController < ApplicationController
 
     def index
         if logged_in?
-            @user = User.find_by(id: current_user[:user_id])
+            @user = User.find_by(id: current_user.id)
             @students = @user.students
             
         else
@@ -70,6 +70,8 @@ class StudentsController < ApplicationController
 
     def destroy
         @student = Student.find_by(id: params[:id])
+        @student.destroy 
+        redirect_to students_path
     end
 
     private 

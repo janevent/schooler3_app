@@ -1,9 +1,14 @@
 <h2><%= @student.name %></h2>
-<p> Educational Goal:<%= @student.goal %></p>
+<p> Educational Goal: <%= @student.goal %></p>
 <h3> <%= @student.name%>'s Enrollments: </h3>
 <% @student.enrollments.each do |en| %>
-    <%= en.start_date %>
-    <%= en.end_date %>
-    <%= en.course.title %>
+    <h4><%= en.course.title %></h4>
+    <p>Start Date :<%= en.start_date.strftime("%b %d, %Y") %></p>
+    <p>End Date: <%= en.end_date.strftime("%b %d, %Y") %></p>
+    
     <%= link_to "#{en.course.title} page", course_path(en.course)%>
 <%end%>
+<br>
+<br>
+
+<%= button_to "delete Student", student_path(@student), :method => "delete", data: {confirm: "Are you sure?"} %>
