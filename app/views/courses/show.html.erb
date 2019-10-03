@@ -3,10 +3,11 @@
 <h3>Description:</h3>
 <%= @course.description %>
 <br>
+
 <h3>Course Materials:</h3>
 <% @course.materials.each do |i| %>
     <p><%= i.item %></p>
-    <%= button_to "delete", material_path(i.id), :method => "delete", data: {confirm: 'Are you sure?'} %>
+    
 <%end%>
 
 <h3>Student Enrollments:</h3>

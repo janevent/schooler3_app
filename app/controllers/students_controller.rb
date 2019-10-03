@@ -13,7 +13,8 @@ class StudentsController < ApplicationController
     end
         
     def create
-        @student = current_user.students.build(name: params[:student][:name], goal: params[:student][:goal])
+        @user = User.find_by(id: current_user.user_id)
+        @student = @user.students.build(name: params[:student][:name], goal: params[:student][:goal])
         
        # binding.pry
         #@student.user = User.find_by(id: current_user[:user_id])
@@ -39,7 +40,7 @@ class StudentsController < ApplicationController
 
     def index
         if logged_in?
-            @user = User.find_by(id: params[:user_id])
+            @user = User.find_by(id: current_user[:user_id])
             @students = @user.students
             
         else
@@ -50,7 +51,7 @@ class StudentsController < ApplicationController
     def edit_student
         if current_user
             @user = User.find_by(id: current_user[:user_id])
-            @student = Student.find_by(id: params[:student_id])
+            @student = Student.find_by(id: params[:id])
         else 
             redirect_to home_path 
         end   
@@ -59,7 +60,7 @@ class StudentsController < ApplicationController
 
     def update_student
         if current_user && @student.update(student_params)
-            redirect_to user_student_path(current_user, @student)
+            redirect_to student_path( @student)
         elsif current_user
             render '/edit'
         else 

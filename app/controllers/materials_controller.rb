@@ -21,16 +21,18 @@ class MaterialsController < ApplicationController
 
     def new 
         @course = Course.find_by(params[:course_id])
-        @material = @course.materials.build
+        #@material = @course.materials.build
+        @material = Material.new
     end
 
     def create 
+       # binding.pry
         @course = Course.find_by(params[:course_id])
-        @material = @course.materials.build(material_params)
-        if @material.save 
+        @material = @course.materials.create(item: params[:material][:item])
+        if @material
             redirect_to course_path(@course)
         else
-            redirect_to new_cours-material_path(@course)
+            redirect_to new_course_material_path(@course)
         end
     end
 
@@ -46,7 +48,7 @@ class MaterialsController < ApplicationController
 
     private
 
-    def material_params
-        params.permit(:material).require(:item)
-    end
+    #def material_params
+     #   params.permit(:material).require(:item)
+    #end
 end
