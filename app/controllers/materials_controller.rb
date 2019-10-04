@@ -8,7 +8,7 @@ class MaterialsController < ApplicationController
             @materials = @course.materials 
         else
             #@user = User.find_by(id: current_user[:user_id])
-            @materials = Material.all
+            @materials = Material.all.uniq
         end #how to access a users materials
         #current_user.students.each do |stu|
         #   stu.courses.each do |co|

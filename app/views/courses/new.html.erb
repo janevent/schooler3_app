@@ -12,20 +12,20 @@
     <br>
    <p> What materials will you need?:</p>
 
-   
+   <%= f.collection_check_boxes(:material_ids, Material.all, :id, :item) %>
 
-   <%= f.fields_for :course_materials do |cm| %>
-        <%= cm.collection_check_boxes(:material_id, Material.all, :id, :item) %>
+   
+        
+    <br>
+    <p> Create new materials: </p>
+    <br>
+    <%= f.fields_for :materials do |mat| %>
+        <%= mat.label :item  %>
         <br>
-        <p> Create new materials: </p>
+        <%= mat.text_field :item %>
         <br>
-        <%= cm.fields_for :materials do |mat| %>
-            <%= mat.label :item  %>
-            <br>
-            <%= mat.text_field :item %>
-            <br>
-        <%end%>
     <%end%>
+    
     
     <br>
         <p>Enroll Your Studious Children:</p>
@@ -38,7 +38,7 @@
         <br>
         <%= enroll.label :end_date %>
         <br>
-        <%= enroll.text_field :start_date %>
+        <%= enroll.text_field :end_date %>
         <br>
         
         <br>

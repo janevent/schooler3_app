@@ -64,8 +64,8 @@ class Course < ApplicationRecord
         end
     end
 
-    def course_materials_attributes=(attributes)
+   # def course_materials_attributes=(attributes)
       #binding.pry  
-    end
+    #end
 
 end

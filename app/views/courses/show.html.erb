@@ -5,6 +5,7 @@
 <br>
 
 <h3>Course Materials:</h3>
+
 <% @course.materials.each do |i| %>
     <p><%= i.item %></p>
     
@@ -18,9 +19,9 @@
         <%= enroll.student.name %>
         <br>
         <p>Start Date:  <%= enroll.start_date.strftime("%b %d, %Y") %></p>
-        <% if enroll.end_date %>
+        
             <p>End Date:  <%= enroll.end_date.strftime("%b %d, %Y") %></p>
-        <%end%>
+        
     <%end%>
 <%end%>    
 <br>
