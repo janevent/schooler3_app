@@ -24,4 +24,20 @@ class SessionsController < ApplicationController
         redirect_to home_path
     end
 
+    def omniauth
+        @user = User.from_omniauth(auth)
+        if @user.save
+            session[:user_id] = @user.id
+            redirect_to user_path(@user)
+        else
+            redirect_to home_path 
+        end
+      end
+
+      private
+
+      def auth
+        request.env['omniauth.auth']
+      end
+
 end
