@@ -18,9 +18,11 @@
     
         <%= enroll.student.name %>
         <br>
-        <p>Start Date:  <%= enroll.start_date.strftime("%b %d, %Y") %></p>
+        <% if enroll.start_date && enroll.end_date %>  
+            <p>Start Date:  <%= enroll.start_date.strftime("%b %d, %Y") %></p>
         
             <p>End Date:  <%= enroll.end_date.strftime("%b %d, %Y") %></p>
+        <%end%>
         
     <%end%>
 <%end%>    
