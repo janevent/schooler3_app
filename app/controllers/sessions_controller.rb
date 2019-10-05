@@ -26,12 +26,10 @@ class SessionsController < ApplicationController
 
     def omniauth
         @user = User.from_omniauth(auth)
-        if @user.save
+        @user.save
             session[:user_id] = @user.id
             redirect_to user_path(@user)
-        else
-            redirect_to home_path 
-        end
+       
       end
 
       private
