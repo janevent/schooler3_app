@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   
 resources :courses do 
   resources :meetings, only: [:new, :create, :show, :index, :destroy]
+  resources :materials, only: [:index, :new, :create]
 end
 
 resources :meetings, only: [:index]
