@@ -14,6 +14,7 @@ class SessionsController < ApplicationController
             session[:user_id] = @user.id
             redirect_to user_path(@user)
         else
+            flash[:notice] = "Wrong name or password"
             redirect_to home_path
         end
     end

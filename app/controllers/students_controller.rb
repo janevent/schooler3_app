@@ -13,8 +13,7 @@ class StudentsController < ApplicationController
     end
         
     def create
-        @user = User.find_by(id: current_user.id)
-        @student = @user.students.build(name: params[:student][:name], goal: params[:student][:goal])
+        @student = current_user.students.build(name: params[:student][:name], goal: params[:student][:goal])
         
        # binding.pry
         #@student.user = User.find_by(id: current_user[:user_id])
@@ -40,7 +39,7 @@ class StudentsController < ApplicationController
 
     def index
         if logged_in?
-            @user = User.find_by(id: current_user.id)
+            @user = User.find_by(id: params[:user_id])
             @students = @user.students
             
         else
@@ -48,24 +47,21 @@ class StudentsController < ApplicationController
         end
     end
 
-    def edit
+    def edit_student
         if current_user
-            @user = User.find_by(id: current_user.id)
-            @student = Student.find_by(id: params[:id])
+            @user = User.find_by(id: current_user[:user_id])
+            @student = Student.find_by(id: params[:student_id])
         else 
             redirect_to home_path 
         end   
     end
 
 
-    def update
-        @user = User.find_by(id: current_user.id)
-       # binding.pry
-        @student = Student.find_by(id: params[:id])
-        if current_user && @student.update(name: params[:student][:name], goal: params[:student][:goal])
-            redirect_to student_path(@student)
+    def update_student
+        if current_user && @student.update(student_params)
+            redirect_to user_student_path(current_user, @student)
         elsif current_user
-            redirect_to edit_student_path(@student)
+            render '/edit'
         else 
             redirect_to home_path 
         end 
@@ -73,8 +69,7 @@ class StudentsController < ApplicationController
 
     def destroy
         @student = Student.find_by(id: params[:id])
-        @student.destroy 
-        redirect_to students_path
+        @student.destroy
     end
 
     private 

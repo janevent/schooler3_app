@@ -23,16 +23,9 @@ resources :courses do
   resources :meetings, only: [:new, :create, :show, :index, :destroy]
 end
 
-resources :meetings, only: [:index, :destroy]
+resources :meetings, only: [:index]
 
-resources :courses do 
-  resources :materials, only: [:index, :destroy, :show, :new, :create]
-end
-
-
-resources :materials, only: [:index, :destroy, :create]
-
-get  '/auth/:provider/callback' => 'sessions#omniauth'
+resources :materials, only: [:index]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
