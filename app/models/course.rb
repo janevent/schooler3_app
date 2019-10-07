@@ -57,12 +57,18 @@ class Course < ApplicationRecord
         #    self.meetings << Meeting.find_or_create_by(v) if !v['day_id'].blank? && !v['start_time'].blank?
        # end
    # end
+    accepts_nested_attributes_for :materials, 
+        :reject_if => :reject_item 
 
-    def materials_attributes=(attributes)
-        attributes.values.each do |v|
-            self.materials << Material.find_or_create_by(v) if !v['item'].empty?
-        end
+    def reject_item(attributes)
+        attributes['item'].blank?
     end
+
+    #def materials_attributes=(attributes)
+     #   attributes.values.each do |v|
+     #       self.materials << Material.find_or_create_by(v) if !v['item'].empty?
+     #   end
+    #end
 
    # def course_materials_attributes=(attributes)
       #binding.pry  

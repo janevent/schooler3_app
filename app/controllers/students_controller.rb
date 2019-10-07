@@ -20,7 +20,7 @@ class StudentsController < ApplicationController
         #@user = User.find_by(id: current_user[:user_id])
         #@student = @user.students.build(student_params)
         if current_user && @student.save
-            redirect_to student_path( @student)
+            redirect_to student_path(@student)
         elsif current_user
             redirect_to new_student_path
         else
@@ -39,7 +39,7 @@ class StudentsController < ApplicationController
 
     def index
         if logged_in?
-            @user = User.find_by(id: params[:user_id])
+            @user = User.find_by(id: current_user.id)
             @students = @user.students
             
         else
@@ -47,9 +47,9 @@ class StudentsController < ApplicationController
         end
     end
 
-    def edit_student
+    def edit
         if current_user
-            @user = User.find_by(id: current_user[:user_id])
+            @user = User.find_by(id: current_user.id)
             @student = Student.find_by(id: params[:student_id])
         else 
             redirect_to home_path 
@@ -57,7 +57,7 @@ class StudentsController < ApplicationController
     end
 
 
-    def update_student
+    def update
         if current_user && @student.update(student_params)
             redirect_to user_student_path(current_user, @student)
         elsif current_user
@@ -70,6 +70,7 @@ class StudentsController < ApplicationController
     def destroy
         @student = Student.find_by(id: params[:id])
         @student.destroy
+        redirect_to students_path
     end
 
     private 
