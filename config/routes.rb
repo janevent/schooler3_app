@@ -28,5 +28,7 @@ resources :meetings, only: [:index, :show, :destroy]
 
 resources :materials, only: [:index, :destroy]
 
+get '/auth/:provider/callback' => 'sessions#omniauth'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
