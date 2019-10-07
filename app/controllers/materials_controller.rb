@@ -44,7 +44,7 @@ class MaterialsController < ApplicationController
     def destroy
         @material = Material.find_by(params[:id])
         @material.destroy
-        redirect_to material_path(@material)
+        redirect_to materials_path
     end
 
     private

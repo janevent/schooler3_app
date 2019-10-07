@@ -1,8 +1,12 @@
 
-<h3>Meeting for <%=@course.title%> Course</h3>
+<% if @course %>
+    <h3>Meeting for <%=@course.title%> Course</h3>
+<%end%>
 <p>Start Time: <%=@meeting.start_time.strftime("%l %M %p")%><p>
 
 <p>End Time: <%=@meeting.end_time.strftime("%l %M %p")%></p>
 
 <br>
-<%= link_to "Go Back To #{@course.title}", course_path(@course) %>
+<% if @course %>
+    <%= link_to "Go Back To #{@course.title}", course_path(@course) %>
+<% end %>

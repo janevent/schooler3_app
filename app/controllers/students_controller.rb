@@ -13,6 +13,7 @@ class StudentsController < ApplicationController
     end
         
     def create
+        
         @student = current_user.students.build(name: params[:student][:name], goal: params[:student][:goal])
         
        # binding.pry
@@ -29,9 +30,10 @@ class StudentsController < ApplicationController
     end
 
     def show
-        if logged_in?
-            @student = Student.find_by(id: params[:id]) #user_id?
-            
+        if logged_in? && @student = Student.find_by(id: params[:id]) 
+            @student 
+        elsif logged_in?
+            redirect_to students_path
         else
             redirect_to home_path
         end
