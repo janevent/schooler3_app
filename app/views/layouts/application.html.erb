@@ -7,6 +7,7 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
     <% if logged_in? %>
       <%= link_to "Profile", user_path(current_user) %>
       <%= link_to "Students", students_path %>
@@ -15,9 +16,10 @@
       <%= link_to "Schedual", meetings_path %>
       <%= link_to "All Materials", materials_path %>
       <%= link_to "Log Out", logout_path %>
-      
-
     <%end%>
+
+    
+
   </head>
 
   <body>
