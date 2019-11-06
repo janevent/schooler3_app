@@ -51,8 +51,8 @@ class StudentsController < ApplicationController
 
     def edit
         if current_user
-            @user = User.find_by(id: current_user.id)
-            @student = Student.find_by(id: params[:student_id])
+            
+            @student = Student.find_by(id: params[:id])
         else 
             redirect_to home_path 
         end   
@@ -60,8 +60,9 @@ class StudentsController < ApplicationController
 
 
     def update
+        @student = Student.find_by(id: params[:id])
         if current_user && @student.update(student_params)
-            redirect_to user_student_path(current_user, @student)
+            redirect_to student_path(@student)
         elsif current_user
             render '/edit'
         else 
@@ -77,8 +78,8 @@ class StudentsController < ApplicationController
 
     private 
 
-    #def student_params 
-       # params.require(:student).permit(:name, :goal) if params[:student]
-    #end
+    def student_params 
+        params.require(:student).permit(:name, :goal) if params[:student]
+    end
 
 end
