@@ -23,7 +23,7 @@ class StudentsController < ApplicationController
         if current_user && @student.save
             redirect_to student_path(@student)
         elsif current_user
-            redirect_to new_student_path
+            render :new
         else
             redirect_to home_path 
         end

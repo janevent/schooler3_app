@@ -45,7 +45,7 @@
 
     <%end%>
 
-    <p> Set The Schedual </p>
+    <p> Set The Schedule </p>
     <%= f.fields_for :meetings do |meet| %>
         <%= meet.collection_select  :day_id, Day.all, :id, :name, prompt: true, include_blank: true %>
         

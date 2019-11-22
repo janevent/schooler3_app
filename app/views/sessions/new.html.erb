@@ -1,5 +1,5 @@
-<%= render partial: 'layouts/errors', locals: {object:@user} %>
-<%= @user.errors[:name] if @user.errors[:name] %>
+
+ <%= @user.errors[:name][0] if @user.errors[:name] %>
 <%= form_for :user do |f| %>
     <%= f.label :name %>
     <%= f.text_field :name %>
