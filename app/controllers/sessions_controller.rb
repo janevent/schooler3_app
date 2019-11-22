@@ -2,20 +2,29 @@
 class SessionsController < ApplicationController
     def new 
         @user = User.new
+    
     end
 
     def create 
         
         
-        @user = User.find_by(name: params[:user][:name])
+        #@user = User.find_by(name: params[:user][:name]) #|| User.new
+        #binding.pry
+        #if !@user 
+         #   @user = User.new
+        #end 
         
+        @user = User.find_by(name: params[:user][:name])
         if @user && @user.authenticate(params[:user][:password])
             #binding.pry
             session[:user_id] = @user.id
             redirect_to user_path(@user)
         else
-            flash[:notice] = "Wrong name or password"
-            redirect_to home_path
+            @user = User.new(name: params[:user][:name])
+            @user.valid?
+            render :new
+            #flash[:notice] = "Wrong name or password"
+            #redirect_to home_path
         end
     end
 

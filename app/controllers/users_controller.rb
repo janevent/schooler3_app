@@ -12,7 +12,8 @@ class UsersController < ApplicationController
             session[:user_id] =@user.id
             redirect_to user_path(@user)
         else
-            redirect_to home_path 
+            render :new
+            #redirect_to home_path 
         end
     end
 

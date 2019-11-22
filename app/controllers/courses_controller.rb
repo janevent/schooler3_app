@@ -2,6 +2,8 @@ class CoursesController < ApplicationController
 
     before_action :check_logged_in
 
+    before_action :find_course, only: [:show, :edit, :update, :destroy]
+
     def new 
         @course = Course.new
         
@@ -39,7 +41,7 @@ class CoursesController < ApplicationController
     end 
 
     def show 
-        @course = Course.find_by(id: params[:id])
+        
     end
 
     def index 
@@ -56,7 +58,7 @@ class CoursesController < ApplicationController
     
 
     def edit 
-        @course = Course.find_by(id: params[:id])
+        #@course = Course.find_by(id: params[:id])
         if @course
             #update course (using nested form)
             #4.times do 
@@ -73,7 +75,7 @@ class CoursesController < ApplicationController
     end
 
     def update
-        @course = Course.find_by(id: params[:id])
+        #@course = Course.find_by(id: params[:id])
         @course.update(course_params) 
         if @course.save
         
@@ -85,7 +87,7 @@ class CoursesController < ApplicationController
     end 
 
     def destroy 
-        @course = Course.find_by(id: params[:id])
+        #@course = Course.find_by(id: params[:id])
         @course.destroy
         redirect_to courses_path
     end
@@ -100,5 +102,9 @@ class CoursesController < ApplicationController
         if !logged_in? || !current_user
             redirect_to home_path
         end
+    end
+
+    def find_course 
+        @course = Course.find_by(id: params[:id])
     end
 end
