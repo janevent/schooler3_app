@@ -1,4 +1,5 @@
 <%= form_for @student do |f| %>
+    <%= render partial: 'layouts/errors', locals: {object:@student} %>
     <%= f.label :name  %>
     <%= f.text_field :name %>
     <%= f.label :goal %>

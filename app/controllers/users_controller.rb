@@ -37,8 +37,13 @@ class UsersController < ApplicationController
 
     def update 
         if logged_in?
-            @user = User.update(user_params)
-            redirect_to user_path
+            @user = User.find_by(id: current_user.id)
+            @user.update(user_params)
+            if @user.valid?
+                redirect_to user_path
+            else 
+                render :edit 
+            end
         else
             redirect_to home_path
         end

@@ -64,7 +64,7 @@ class StudentsController < ApplicationController
         if current_user && @student.update(student_params)
             redirect_to student_path(@student)
         elsif current_user
-            render '/edit'
+            render :edit
         else 
             redirect_to home_path 
         end 
