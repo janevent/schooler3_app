@@ -1,6 +1,7 @@
 
  <%= @user.errors[:name][0] if @user.errors[:name] %>
 <%= form_for :user do |f| %>
+    <%=flash[:error] %>
     <%= f.label :name %>
     <%= f.text_field :name %>
     <%= f.label :password %>
