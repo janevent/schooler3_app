@@ -30,10 +30,11 @@ class MaterialsController < ApplicationController
        # binding.pry
         @course = Course.find_by(id: params[:course_id])
         @material = @course.materials.create(item: params[:material][:item])
-        if @material
+        if @material.save
             redirect_to course_path(@course)
         else
-            redirect_to new_course_material_path(@course)
+            render :new
+            #redirect_to new_course_material_path(@course)
         end
     end
 

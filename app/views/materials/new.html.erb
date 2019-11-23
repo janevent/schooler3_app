@@ -1,5 +1,6 @@
 <h2>Add A New Material For <%= @course.title %></h2>
 <%= form_for [@course, @material] do |f| %>
+    <%= render partial: 'layouts/errors', locals: {object:@material} %>
     <%= f.label :item %>
     <%= f.text_field :item %>
     <%= f.submit "Create An Item" %>
