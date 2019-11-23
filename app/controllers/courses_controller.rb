@@ -35,7 +35,17 @@ class CoursesController < ApplicationController
             if @course.save 
                 redirect_to course_path(@course) 
             else
-                redirect_to new_course_path
+                4.times do
+                    @course.materials.build
+                end
+                
+                3.times do
+                    @enrollment = @course.enrollments.build
+                end 
+                7.times do 
+                    @meeting = @course.meetings.build
+                end
+                render :new
             end
         end  
     end 

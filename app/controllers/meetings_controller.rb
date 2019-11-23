@@ -13,8 +13,8 @@ class MeetingsController < ApplicationController
         if @meeting.save 
             redirect_to course_meeting_path(@course, @meeting)
         else 
-            #render :new
-            redirect_to new_course_meeting_path(@course)
+            render :new
+            #redirect_to new_course_meeting_path(@course)
         end 
     end
 

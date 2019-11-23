@@ -1,6 +1,7 @@
 <h1>Create a Course</h1>
-<%= render partial: 'layouts/errors', locals: {object:@course} %>
+
 <%= form_for @course do |f| %>
+    <%= render partial: 'layouts/errors', locals: {object:@course} %>
     <%= f.label :title %>
     <br>
     <%= f.text_field :title %>
@@ -18,8 +19,10 @@
         
     <br>
     <p> Create new materials: </p>
+    <%= render partial: 'layouts/errors', locals: {object:@course.materials.first} %>
     <br>
     <%= f.fields_for :materials do |mat| %>
+       
         <%= mat.label :item  %>
         <br>
         <%= mat.text_field :item %>
@@ -29,7 +32,9 @@
     
     <br>
         <p>Enroll Your Studious Children:</p>
+        <%= render partial: 'layouts/errors', locals: {object: @course.enrollments.first} %>
     <%= f.fields_for :enrollments do |enroll| %>
+        
         <%= enroll.collection_select :student_id, Student.all, :id, :name, include_blank: true %>
         <br>
         <%= enroll.label :start_date %>
@@ -47,6 +52,7 @@
 
     <p> Set The Schedule </p>
     <%= f.fields_for :meetings do |meet| %>
+         
         <%= meet.collection_select  :day_id, Day.all, :id, :name, prompt: true, include_blank: true %>
         
         <%= meet.label :start_time %>
