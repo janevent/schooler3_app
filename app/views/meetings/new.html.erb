@@ -2,6 +2,7 @@
 <br>
 <h2>Add A Meeting For <%=@course.title%></h2>
 <%= form_for [@course, @meeting] do |f| %>
+    <%= render partial: 'layouts/errors', locals: {object:@meeting} %>
     <%= f.collection_select :day_id, Day.all, :id, :name %>
     
     <%= f.label :start_time %>

@@ -51,6 +51,7 @@
     <%end%>
 
     <p> Set The Schedule </p>
+    <%= render partial: 'layouts/errors', locals: {object:@course.meetings.first} %>
     <%= f.fields_for :meetings do |meet| %>
          
         <%= meet.collection_select  :day_id, Day.all, :id, :name, prompt: true, include_blank: true %>
